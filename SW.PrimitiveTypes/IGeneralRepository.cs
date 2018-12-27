@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace SW.Pmm.Primitives
+namespace SW.PrimitiveTypes
 {
     public interface IGeneralRepository
     {

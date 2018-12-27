@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SW.Pmm.Primitives
+namespace SW.PrimitiveTypes
 {
     // source: https://github.com/jhewlett/ValueObject
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SW.Pmm.Primitives
+namespace SW.PrimitiveTypes
 {
     public abstract class BaseDomainEvent
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SW.Pmm.Primitives
+namespace SW.PrimitiveTypes
 {
     public class Money
     {

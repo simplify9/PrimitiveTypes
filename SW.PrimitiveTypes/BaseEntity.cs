@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SW.Pmm.Primitives
+namespace SW.PrimitiveTypes
 {
     // This can be modified to BaseEntity<TId> to support multiple key types (e.g. Guid)
     public abstract class BaseEntity

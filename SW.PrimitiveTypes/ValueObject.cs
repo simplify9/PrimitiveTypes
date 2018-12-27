@@ -5,7 +5,7 @@ using System.Reflection;
 
 
 
-namespace SW.Pmm.Primitives
+namespace SW.PrimitiveTypes
 {
     // source: https://github.com/jhewlett/ValueObject
     public abstract class ValueObject : IEquatable<ValueObject>
