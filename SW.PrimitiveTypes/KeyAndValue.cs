@@ -4,10 +4,9 @@ using System.Text;
 
 namespace SW.Pmm.Primitives
 {
-    public class Blob
+    public class KeyAndValue
     {
-        public byte[] Data { get; set; }
-
-        public string MimeType { get; set; }
+        public string Key { get; set; }
+        public string Value { get; set; }
     }
 }

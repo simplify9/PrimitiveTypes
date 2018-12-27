@@ -2,24 +2,57 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SW.PrimitiveTypes
+namespace SW.Pmm.Primitives
 {
     public class StreetAddress
     {
-        //public int Id { get; set; }
+        public static StreetAddress Empty()
+        {
+            return new StreetAddress
+            {
+                GeoPosition = GeoPosition.Empty()
+            };
+        }
+
+        public  StreetAddress()
+        {
+            GeoPosition = new GeoPosition();
+        }
+        
+        public StreetAddress(string country, string city, string state, string[] street,
+            string postCode, string building, string description, string floor,
+            string appartment, GeoPosition geoPosition)
+        {
+            if (geoPosition == null) throw new ArgumentNullException(nameof(geoPosition));
+
+            Country = country;
+            City = city;
+            State = state;
+            Street = street;
+            PostCode = postCode;
+            Building = building;
+            Description = description;
+            Floor = floor;
+            Appartment = appartment;
+            GeoPosition = geoPosition;
+        }
+
         public string Country { get; set; }
-        //public Country Country { get; set; }
-        //public int? CityId { get; set; }
-        public string City { get; set; }
-        //public string StateName { get; set; }
+
+        public string City { get; set; } 
+
         public string State  { get; set; }
+
         public string[] Street { get; set; }
-        //public string Line2 { get; set; }
-        //public string Line3 { get; set; }
+        
         public string PostCode { get; set; }
+
         public string Building { get; set; }
+
         public string Description { get; set; }
+
         public string Floor { get; set; }
+
         public string Appartment { get; set; }
 
         public GeoPosition GeoPosition { get; set; } 
