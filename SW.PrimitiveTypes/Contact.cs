@@ -16,18 +16,18 @@ namespace SW.PrimitiveTypes
 
         }
 
-        public Contact(string name, PhoneNo[] phones, Email[] emails)
-        {
-            if (phones == null) throw new ArgumentNullException(nameof(phones));
-            if (emails == null) throw new ArgumentNullException(nameof(emails));
+        //public Contact(string name, PhoneNo[] phones, Email[] emails)
+        //{
+        //    if (phones == null) throw new ArgumentNullException(nameof(phones));
+        //    if (emails == null) throw new ArgumentNullException(nameof(emails));
 
-            Name = name;
-            Phones = phones;
-            Emails = emails;
-        }
+        //    Name = name;
+        //    Phones = phones;
+        //    Emails = emails;
+        //}
 
         public string Name { get;  set; }
-        public PhoneNo[] Phones { get;  set; }
-        public Email[] Emails { get;  set; }
+        public string[] Phones { get;  set; }
+        public string[] Emails { get;  set; }
     }
 }
