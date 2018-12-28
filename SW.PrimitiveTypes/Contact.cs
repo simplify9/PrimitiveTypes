@@ -26,8 +26,8 @@ namespace SW.PrimitiveTypes
             Emails = emails;
         }
 
-        public string Name { get; private set; }
-        public PhoneNo[] Phones { get; private set; }
-        public Email[] Emails { get; private set; }
+        public string Name { get;  set; }
+        public PhoneNo[] Phones { get;  set; }
+        public Email[] Emails { get;  set; }
     }
 }
