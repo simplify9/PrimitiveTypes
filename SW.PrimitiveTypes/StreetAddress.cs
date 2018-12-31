@@ -10,13 +10,13 @@ namespace SW.PrimitiveTypes
         {
             return new StreetAddress
             {
-                GeoPosition = GeoPosition.Empty()
+                //GeoPosition = GeoPosition.Empty()
             };
         }
 
         public  StreetAddress()
         {
-            GeoPosition = new GeoPosition();
+            //GeoPosition = new GeoPosition();
         }
         
         public StreetAddress(string country, string city, string state, string[] street,
@@ -34,7 +34,7 @@ namespace SW.PrimitiveTypes
             Description = description;
             Floor = floor;
             Appartment = appartment;
-            GeoPosition = geoPosition;
+            //GeoPosition = geoPosition;
         }
 
         public string Country { get; set; }
@@ -55,7 +55,7 @@ namespace SW.PrimitiveTypes
 
         public string Appartment { get; set; }
 
-        public GeoPosition GeoPosition { get; set; } 
+        //public GeoPosition GeoPosition { get; set; } 
 
 
     }
