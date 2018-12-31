@@ -15,18 +15,18 @@ namespace SW.PrimitiveTypes
             return new Weight { };
         }
 
-        public static Weight Zero
-        {
-            get
-            {
-                return new Weight(0, WeightUnit.g);
-            }
-        }
+        //public static Weight Zero
+        //{
+        //    get
+        //    {
+        //        return new Weight(0, WeightUnit.g);
+        //    }
+        //}
         
-        public Weight ChangeUnit(DimensionUnit toUnit)
-        {
-            throw new NotImplementedException();
-        }
+        //public Weight ChangeUnit(DimensionUnit toUnit)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public  Weight()
         {
