@@ -20,20 +20,19 @@ namespace SW.PrimitiveTypes
         }
         
         public StreetAddress(string country, string city, string state, string[] street,
-            string postCode, string building, string description, string floor,
-            string appartment, GeoPosition geoPosition)
+            string postCode)
         {
-            if (geoPosition == null) throw new ArgumentNullException(nameof(geoPosition));
+            //if (geoPosition == null) throw new ArgumentNullException(nameof(geoPosition));
 
             Country = country;
             City = city;
             State = state;
             Street = street;
             PostCode = postCode;
-            Building = building;
-            Description = description;
-            Floor = floor;
-            Appartment = appartment;
+            //Building = building;
+            //Description = description;
+            //Floor = floor;
+            //Appartment = appartment;
             //GeoPosition = geoPosition;
         }
 
@@ -47,13 +46,13 @@ namespace SW.PrimitiveTypes
         
         public string PostCode { get; set; }
 
-        public string Building { get; set; }
+        //public string Building { get; set; }
 
-        public string Description { get; set; }
+        //public string Description { get; set; }
 
-        public string Floor { get; set; }
+        //public string Floor { get; set; }
 
-        public string Appartment { get; set; }
+        //public string Appartment { get; set; }
 
         //public GeoPosition GeoPosition { get; set; } 
 
