@@ -28,7 +28,7 @@ namespace SW.PrimitiveTypes
         public decimal? Width { get;  set; }
         public decimal? Height { get;  set; }
 
-        public DimensionUnit Unit { get;  set; }
+        public DimensionUnit? Unit { get;  set; }
         
 
 
