@@ -24,7 +24,7 @@ namespace SW.PrimitiveTypes
             Currency = currency;
         }
 
-        public decimal Amount { get; set; }
+        public decimal? Amount { get; set; }
         public string Currency { get; set; }
     }
 }
