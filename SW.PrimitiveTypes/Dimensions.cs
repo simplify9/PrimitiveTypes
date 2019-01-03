@@ -45,13 +45,13 @@ namespace SW.PrimitiveTypes
             switch (Unit)
             {
                 case DimensionUnit.cm:
-                    return new Weight(volume / 6000, WeightUnit.Kg);
+                    return new Weight(volume / 6000, WeightUnit.kg);
 
                 case DimensionUnit.M:
-                    return new Weight(1000 * volume / 6000, WeightUnit.Kg);
+                    return new Weight(1000 * volume / 6000, WeightUnit.kg);
 
                 case DimensionUnit.@in:
-                    return new Weight(volume / 166, WeightUnit.Lb);
+                    return new Weight(volume / 166, WeightUnit.lb);
 
                 default:
                     throw new NotSupportedException();

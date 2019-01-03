@@ -87,9 +87,10 @@ namespace SW.PrimitiveTypes
 
     public enum WeightUnit
     {
-        g,
-        Kg,
-        Lb
+        gm,
+        kg,
+        lb,
+        oz
     }
 
 }
