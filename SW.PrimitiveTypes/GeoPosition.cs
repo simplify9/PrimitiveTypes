@@ -11,7 +11,7 @@ namespace SW.PrimitiveTypes
             return new GeoPosition();
         }
 
-        public  GeoPosition()
+        private  GeoPosition()
         {
 
         }
