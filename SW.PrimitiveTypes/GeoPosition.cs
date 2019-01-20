@@ -22,8 +22,8 @@ namespace SW.PrimitiveTypes
             Latitude = latitude;
         }
 
-        public decimal Longitude { get; private set; }
-        public decimal Latitude { get; private set; }
+        public decimal? Longitude { get; private set; }
+        public decimal? Latitude { get; private set; }
 
         //public string GeoHash { get; set; }
     }
