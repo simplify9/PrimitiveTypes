@@ -16,10 +16,10 @@ namespace SW.PrimitiveTypes
 
         }
 
-        public GeoPosition(decimal longitude, decimal latitude)
+        public GeoPosition(decimal? longitude, decimal? latitude)
         {
-            Longitude = longitude;
-            Latitude = latitude;
+            Longitude = longitude ?? throw new ArgumentNullException(nameof(longitude));
+            Latitude = latitude ?? throw new ArgumentNullException(nameof(latitude));
         }
 
         public decimal? Longitude { get; private set; }
