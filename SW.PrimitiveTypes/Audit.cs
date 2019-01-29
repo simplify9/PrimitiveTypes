@@ -11,7 +11,7 @@ namespace SW.PrimitiveTypes
         {
         }
 
-        public DateTime CreatedOn { get; private set; }
+        public DateTime CreatedOn { get; set; }
         public DateTime ModifiedOn { get; set; }
 
         public string CreatedBy { get; set; }
