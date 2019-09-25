@@ -9,8 +9,9 @@ namespace SW.PrimitiveTypes
     {
         public TKey Id { get; set; }
 
-        public List<BaseDomainEvent> Events = new List<BaseDomainEvent>();
+        public List<IDomainEvent> Events { get; } = new List<IDomainEvent>();
     }
+
     public abstract class BaseEntity : BaseEntity<int>
     {
         //public int Id { get; set; }
