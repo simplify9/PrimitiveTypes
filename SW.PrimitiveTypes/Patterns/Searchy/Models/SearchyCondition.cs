@@ -10,14 +10,14 @@ namespace SW.PrimitiveTypes
 
         public SearchyCondition() => Filters = new List<SearchyFilter>();
 
-        public SearchyCondition(SearchyFilter filter)
+        public SearchyCondition(string field, SearchyRule rule, object value) : this()
         {
-            Filters = new List<SearchyFilter> { filter };
+            Filters.Add(new SearchyFilter(field, rule, value)); 
         }
 
-        public SearchyCondition(ICollection<SearchyFilter> filters)
+        public SearchyCondition(ISearchyFilter filter)
         {
-            Filters = filters;
+            Filters = new List<SearchyFilter> { new SearchyFilter(filter) };
         }
 
         public SearchyCondition(ICollection<ISearchyFilterTyped> filters)
@@ -29,14 +29,5 @@ namespace SW.PrimitiveTypes
         {
             Filters = filters.Select(f => new SearchyFilter(f)).ToList();
         }
-
-
-
-
-
-
-
-
-
     }
 }

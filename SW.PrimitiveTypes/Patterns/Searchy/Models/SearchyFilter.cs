@@ -18,7 +18,11 @@ namespace SW.PrimitiveTypes
 
                 if (!(ValueString is null)) return ValueString;
                 else if (!(ValueStringArray is null)) return ValueStringArray;
-                
+                else if (!(ValueDateTime  is null)) return ValueDateTime;
+                else if (!(ValueDateTimeArray is null)) return ValueDateTimeArray;
+                else if (!(ValueDecimal is null)) return ValueDecimal;
+                else if (!(ValueDecimalArray is null)) return ValueDecimalArray;
+
                 return value;
             }
             set 
@@ -30,6 +34,12 @@ namespace SW.PrimitiveTypes
 
         public string ValueString { get; set; }
         public string[] ValueStringArray { get; set; }
+
+        public decimal? ValueDecimal { get; set; }
+        public decimal[] ValueDecimalArray { get; set; }
+
+        public DateTime? ValueDateTime { get; set; }
+        public DateTime[] ValueDateTimeArray { get; set; }
 
         public SearchyFilter() {}
 
@@ -44,15 +54,13 @@ namespace SW.PrimitiveTypes
 
         public SearchyFilter(ISearchyFilterTyped filter) : this((ISearchyFilter) filter)
         {
-            //ValueBool = filter.ValueBool;
-            //ValueByte = filter.ValueByte;
-            //ValueInt = filter.ValueInt;
-            //ValueLong = filter.ValueLong;
+
+            ValueDateTime = filter.ValueDateTime;
+            ValueDecimal = filter.ValueDecimal;
             ValueString = filter.ValueString;
-            //ValueDate = filter.ValueDate;
-            //ValueByteArray  = filter.ValueByteArray;
-            //ValueIntArray = filter.ValueIntArray;
-            //ValueLongArray  = filter.ValueLongArray;
+
+            ValueDateTimeArray = filter.ValueDateTimeArray;
+            ValueDecimalArray = filter.ValueDecimalArray;
             ValueStringArray = filter.ValueStringArray;
         }
     }

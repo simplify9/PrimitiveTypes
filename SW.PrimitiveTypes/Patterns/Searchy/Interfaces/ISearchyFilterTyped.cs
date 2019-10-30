@@ -8,5 +8,11 @@ namespace SW.PrimitiveTypes
     {
         string ValueString { get; set; }
         string[] ValueStringArray { get; set; }
+
+        decimal? ValueDecimal { get; set; }
+        decimal[] ValueDecimalArray { get; set; }
+
+        DateTime? ValueDateTime { get; set; }
+        DateTime[] ValueDateTimeArray { get; set; }
     }
 }
