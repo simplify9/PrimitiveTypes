@@ -1,7 +1,4 @@
-﻿
-
-
-using System;
+﻿using System;
 
 namespace SW.PrimitiveTypes
 {
@@ -17,11 +14,11 @@ namespace SW.PrimitiveTypes
             {
 
                 if (!(ValueString is null)) return ValueString;
-                else if (!(ValueStringArray is null)) return ValueStringArray;
-                else if (!(ValueDateTime  is null)) return ValueDateTime;
-                else if (!(ValueDateTimeArray is null)) return ValueDateTimeArray;
-                else if (!(ValueDecimal is null)) return ValueDecimal;
-                else if (!(ValueDecimalArray is null)) return ValueDecimalArray;
+                if (!(ValueStringArray is null)) return ValueStringArray;
+                if (!(ValueDateTime  is null)) return ValueDateTime;
+                if (!(ValueDateTimeArray is null)) return ValueDateTimeArray;
+                if (!(ValueDecimal is null)) return ValueDecimal;
+                if (!(ValueDecimalArray is null)) return ValueDecimalArray;
 
                 return value;
             }
