@@ -6,7 +6,7 @@ namespace SW.PrimitiveTypes
     public interface IConsume
     {
         string ConsumerName { get; }
-        IEnumerable<string> MessageTypeNames { get; }
+        Task<IEnumerable<string>> GetMessageTypeNames(); 
         Task Process(string messageTypeName, string message);
     }
 
