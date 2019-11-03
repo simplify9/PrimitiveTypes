@@ -14,24 +14,29 @@ namespace SW.PrimitiveTypes
             PageSize = 1000;
         }
 
-        public SearchyRequest(string[] filters, string[] sorts, int pageSize, int pageIndex, bool countRows) :
+        public SearchyRequest(string[] filters, string[] sorts = null, int pageSize = 0, int pageIndex = 0, bool countRows = false) :
             this()
         {
 
             if (filters != null)
             {
-                var cond = new SearchyCondition();  
+                var cond = new SearchyCondition();
 
                 foreach (var str in filters)
                     cond.Filters.Add(new SearchyFilter(str));
 
-                Conditions.Add(cond);  
+                Conditions.Add(cond);
+            }
+
+            if (sorts != null)
+            { 
+            
             }
 
 
             PageSize = pageSize;
             PageIndex = pageIndex;
-            CountRows = countRows; 
+            CountRows = countRows;
 
         }
 

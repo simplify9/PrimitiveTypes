@@ -7,6 +7,11 @@ namespace SW.PrimitiveTypes
 {
     public class SearchyResponse<TModel>
     {
+        public SearchyResponse()
+        {
+            Result = new List<TModel>(); 
+        }
+
         public IEnumerable<TModel> Result { get; set; }
         public int TotalCount { get; set; }
     }
