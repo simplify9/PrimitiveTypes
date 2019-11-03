@@ -8,24 +8,24 @@ namespace SW.PrimitiveTypes
 
         public string Field { get; set; }
 
-        public object Value 
-        { 
-            get 
+        public object Value
+        {
+            get
             {
 
                 if (!(ValueString is null)) return ValueString;
                 if (!(ValueStringArray is null)) return ValueStringArray;
-                if (!(ValueDateTime  is null)) return ValueDateTime;
+                if (!(ValueDateTime is null)) return ValueDateTime;
                 if (!(ValueDateTimeArray is null)) return ValueDateTimeArray;
                 if (!(ValueDecimal is null)) return ValueDecimal;
                 if (!(ValueDecimalArray is null)) return ValueDecimalArray;
 
                 return value;
             }
-            set 
+            set
             {
                 this.value = value;
-            } 
+            }
         }
         public SearchyRule Rule { get; set; }
 
@@ -38,7 +38,22 @@ namespace SW.PrimitiveTypes
         public DateTime? ValueDateTime { get; set; }
         public DateTime[] ValueDateTimeArray { get; set; }
 
-        public SearchyFilter() {}
+        public SearchyFilter() { }
+
+        public SearchyFilter(string queryString)
+        {
+            if (!string.IsNullOrEmpty(queryString))
+            {
+                var arr = queryString.Split(':');
+                if (arr.Length == 3)
+                {
+                    Field = arr[0];
+                    Rule = (SearchyRule)int.Parse(arr[1]);
+                    Value = arr[2];
+                }
+            }
+
+        }
 
         public SearchyFilter(string field, SearchyRule rule, object value)
         {
@@ -47,9 +62,9 @@ namespace SW.PrimitiveTypes
             Rule = rule;
         }
 
-        public SearchyFilter(ISearchyFilter filter) : this(filter.Field, filter.Rule, filter.Value ) {}
+        public SearchyFilter(ISearchyFilter filter) : this(filter.Field, filter.Rule, filter.Value) { }
 
-        public SearchyFilter(ISearchyFilterTyped filter) : this((ISearchyFilter) filter)
+        public SearchyFilter(ISearchyFilterTyped filter) : this((ISearchyFilter)filter)
         {
 
             ValueDateTime = filter.ValueDateTime;
@@ -59,6 +74,11 @@ namespace SW.PrimitiveTypes
             ValueDateTimeArray = filter.ValueDateTimeArray;
             ValueDecimalArray = filter.ValueDecimalArray;
             ValueStringArray = filter.ValueStringArray;
+        }
+
+        public override string ToString()
+        {
+            return $"filter={Field}:{(int)Rule}:{Uri.EscapeDataString(Value.ToString())}";
         }
     }
 }
