@@ -29,8 +29,9 @@ namespace SW.PrimitiveTypes
             }
 
             if (sorts != null)
-            { 
-            
+            {
+                foreach (var str in sorts)
+                    Sorts.Add(new SearchySort(str));  
             }
 
 
