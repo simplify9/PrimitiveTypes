@@ -11,7 +11,7 @@ namespace SW.PrimitiveTypes
         {
             Conditions = new List<SearchyCondition>();
             Sorts = new List<SearchySort>();
-            PageSize = 1000;
+            //PageSize = 1000;
         }
 
         public SearchyRequest(string[] filters, string[] sorts = null, int pageSize = 0, int pageIndex = 0, bool countRows = false) :
@@ -61,13 +61,13 @@ namespace SW.PrimitiveTypes
             string filtersStr = string.Empty;
             string sortsStr = string.Empty;
 
-            if (Conditions.Count == 1)
+            if (Conditions.Count >= 1)
             {
                 var filters = Conditions.First().Filters.Select(f => f.ToString());
                 filtersStr = String.Join("&", filters);
             }
 
-            var sorts = Sorts.Select(f => f.ToString());
+            var sorts = Sorts.Select(s => s.ToString());
             sortsStr = String.Join("&", sorts);
 
             var result = string.Empty;
