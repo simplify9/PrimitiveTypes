@@ -78,7 +78,7 @@ namespace SW.PrimitiveTypes
 
         public override string ToString()
         {
-            return $"filter={Field}:{(int)Rule}:{Uri.EscapeDataString(Value.ToString())}";
+            return $"filter={Field}:{(int)Rule}:{((Value==null) ? null : Uri.EscapeDataString(Value.ToString()))}";
         }
     }
 }
