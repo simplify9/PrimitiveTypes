@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace SW.PrimitiveTypes
 {
-    public class SearchyFilterConfig : ISearchyFilterConfig
+    public class SearchyFilterSetup : ISearchyFilterConfig
     {
-        public SearchyFilterConfig() => Rules = new List<SearchyRule>();
+        public SearchyFilterSetup() => Rules = new List<SearchyRule>();
 
         public string Type { get; set; }
         public string Text { get; set; }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SW.PrimitiveTypes
 {
-    public static class SearchyFilterConfigType
+    public static class SearchyDataType
     {
         public const string Text = "text";
         public const string Date = "date";

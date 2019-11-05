@@ -13,7 +13,7 @@ namespace SW.PrimitiveTypes.UnitTests
             var srStr = sr.ToString();
 
             var sr2 = new SearchyRequest(new SearchyCondition("Id", SearchyRule.GreaterThan, "kjkjhg...&"));
-            sr2.Conditions.First().Filters.Add(new SearchyFilter("FirstName", SearchyRule.Contains, "sa#"));
+            sr2.Conditions.First().Filters.Add(new SearchyFilter("FirstName", SearchyRule.EqualsTo, null));
             sr2.Sorts.Add(new SearchySort("Id", SearchySortOrder.ASC));
             sr2.Sorts.Add(new SearchySort("Name:2"));
             var srStr2 = sr2.ToString();
