@@ -11,6 +11,8 @@ namespace SW.PrimitiveTypes
 
         public SearchySortOrder  Sort { get; set; }
 
+        public SearchySort() {}
+
         public SearchySort(string queryString)
         {
             if (!string.IsNullOrEmpty(queryString))
@@ -30,6 +32,8 @@ namespace SW.PrimitiveTypes
             Field = field;
             Sort = sortOrder;
         }
+
+
 
         public override string ToString()
         {
