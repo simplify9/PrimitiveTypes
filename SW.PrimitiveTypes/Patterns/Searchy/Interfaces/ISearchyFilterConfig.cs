@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SW.PrimitiveTypes
 {
-    public interface  ISearchyFilterConfig
+    public interface  ISearchyFilterSetup
     {
         string Type { get; set; }
         string Text { get; set; }

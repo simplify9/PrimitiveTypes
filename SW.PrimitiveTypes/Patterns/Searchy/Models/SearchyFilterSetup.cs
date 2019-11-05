@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SW.PrimitiveTypes
 {
-    public class SearchyFilterSetup : ISearchyFilterConfig
+    public class SearchyFilterSetup : ISearchyFilterSetup
     {
         public SearchyFilterSetup() => Rules = new List<SearchyRule>();
 
