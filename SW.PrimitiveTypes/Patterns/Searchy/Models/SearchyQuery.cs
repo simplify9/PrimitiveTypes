@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SW.PrimitiveTypes
 {
-    
+    [Obsolete]
     public class SearchyQuery
     {
         public ICollection<SearchyCondition> Conditions { get; private set; } = new List<SearchyCondition>();

@@ -1,5 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace SW.PrimitiveTypes.UnitTests
 {
@@ -32,6 +34,33 @@ namespace SW.PrimitiveTypes.UnitTests
 
             var srnew = new SearchyRequest(new string[] { "Id:1:testvalue" }, null, 0, 0, false);
 
+
+            var sres = new SearchyResponse<string>();
+
+            sres.Result = new List<string>
+            {
+                "val1",
+                "val2"
+            };
+
+            SearchyResponse sresDown = sres; 
+
+            
+
+        }
+
+       
+        Task<SearchyResponse> TestSearchyResponseCasting()
+        {
+            var sr = new SearchyResponse<string>();
+
+            sr.Result = new List<string>
+            {
+                "val1",
+                "val2"
+            };
+
+            return Task.FromResult((SearchyResponse)sr);
         }
     }
 }
