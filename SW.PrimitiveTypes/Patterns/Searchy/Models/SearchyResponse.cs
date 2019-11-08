@@ -5,34 +5,32 @@ using System.Text;
 
 namespace SW.PrimitiveTypes
 {
-    public class SearchyResponse<TModel> : SearchyResponse
+    public class SearchyResponse<TModel> 
     {
         public SearchyResponse()
         {
             Result = new List<TModel>();
-
         }
 
-        IEnumerable<TModel> result;
-        public new IEnumerable<TModel> Result
+        public  IEnumerable<TModel> Result { get; set; }
+
+        public int TotalCount { get; set; }
+
+        public SearchyResponse ToSearchyResponse()
         {
-            get
+            return new SearchyResponse
             {
-                return result;
-            }
-            set
-            {
-                base.Result = value;
-                result = value;
-            }
+                TotalCount = this.TotalCount,
+                Result = this.Result
+            };
         }
+
     }
 
     public class SearchyResponse
     {
         public SearchyResponse()
         {
-            Result = new List<object>();
         }
 
         public IEnumerable Result { get; set; }

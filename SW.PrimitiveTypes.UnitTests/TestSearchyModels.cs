@@ -43,7 +43,7 @@ namespace SW.PrimitiveTypes.UnitTests
                 "val2"
             };
 
-            SearchyResponse sresDown = sres; 
+            SearchyResponse sresDown = sres.ToSearchyResponse(); 
 
             
 
@@ -60,7 +60,7 @@ namespace SW.PrimitiveTypes.UnitTests
                 "val2"
             };
 
-            return Task.FromResult((SearchyResponse)sr);
+            return Task.FromResult(sr.ToSearchyResponse());
         }
     }
 }
