@@ -11,64 +11,79 @@ namespace SW.PrimitiveTypes.UnitTests
         [TestMethod]
         public void FromCmToM()
         {
-            var dim = new Dimensions(300, 300, 300, DimensionUnit.cm);
+            var dim = new Dimensions(300, 400, 500, DimensionUnit.cm);
             var dimInM = dim.Convert(DimensionUnit.M);
 
-            Assert.AreEqual(dimInM.Height, 3m);
+            Assert.AreEqual(dimInM.Length, 3m);
+            Assert.AreEqual(dimInM.Width, 4m);
+            Assert.AreEqual(dimInM.Height, 5m);
         }
 
         [TestMethod]
         public void FromMToCm()
         {
-            var dim = new Dimensions(2, 2, 2, DimensionUnit.M);
+            var dim = new Dimensions(2, 3, 4, DimensionUnit.M);
             var dimInCm = dim.Convert(DimensionUnit.cm);
 
-            Assert.AreEqual(dimInCm.Height, 200);
+            Assert.AreEqual(dimInCm.Length, 200);
+            Assert.AreEqual(dimInCm.Width, 300);
+            Assert.AreEqual(dimInCm.Height, 400);
         }
 
         [TestMethod]
         public void FromInToCm()
         {
-            var dim = new Dimensions(2, 2, 2, DimensionUnit.@in);
+            var dim = new Dimensions(2, 3, 4, DimensionUnit.@in);
             var dimInCm = dim.Convert(DimensionUnit.cm);
 
-            Assert.AreEqual(dimInCm.Height,5.08m);
+            Assert.AreEqual(dimInCm.Length,5.08m);
+            Assert.AreEqual(dimInCm.Width, 7.62m);
+            Assert.AreEqual(dimInCm.Height, 10.16m);
         }
 
         [TestMethod]
         public void FromCmToIn()
         {
-            var dim = new Dimensions(10, 10, 10, DimensionUnit.cm);
+            var dim = new Dimensions(10, 20, 30, DimensionUnit.cm);
             var dimInIn = dim.Convert(DimensionUnit.@in);
 
-            Assert.AreEqual(dimInIn.Height, 3.937008m);
+            Assert.AreEqual(dimInIn.Length, 3.937008m);
+            Assert.AreEqual(dimInIn.Width, 7.874016m);
+            Assert.AreEqual(dimInIn.Height, 11.811024m);
         }
         
         [TestMethod]
         public void FromInToM()
         {
-            var dim = new Dimensions(200, 200, 200, DimensionUnit.@in);
+            var dim = new Dimensions(200, 300, 400, DimensionUnit.@in);
             var dimInM = dim.Convert(DimensionUnit.M);
 
-            Assert.AreEqual(dimInM.Height, 5.08001m);
+            Assert.AreEqual(dimInM.Length, 5.08001m);
+            Assert.AreEqual(dimInM.Width, 7.620015m);
+            Assert.AreEqual(dimInM.Height, 10.160020m);
         }
 
         [TestMethod]
         public void FromMToIn()
         {
-            var dim = new Dimensions(5, 5, 5, DimensionUnit.M);
+            var dim = new Dimensions(5, 10, 15, DimensionUnit.M);
             var dimInIn = dim.Convert(DimensionUnit.@in);
 
-            Assert.AreEqual(dimInIn.Height, 196.85m);
+            Assert.AreEqual(dimInIn.Length, 196.85m);
+            Assert.AreEqual(dimInIn.Width, 393.7m);
+            Assert.AreEqual(dimInIn.Height, 590.55m);
         }
 
         [TestMethod]
         public void FromToSame()
         {
-            var dim = new Dimensions(5, 5, 5, DimensionUnit.M);
+            var dim = new Dimensions(5, 15, 30, DimensionUnit.M);
             var dimInM = dim.Convert(DimensionUnit.M);
 
-            Assert.AreEqual(dimInM.Height, 5m);
+            Assert.AreEqual(dimInM.Length, 5m);
+            Assert.AreEqual(dimInM.Width, 15m);
+            Assert.AreEqual(dimInM.Height, 30m);
+            Assert.AreEqual(dimInM.Unit, DimensionUnit.M);
         }
 
         [TestMethod]

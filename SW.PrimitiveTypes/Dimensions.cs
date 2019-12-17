@@ -58,6 +58,7 @@ namespace SW.PrimitiveTypes
                     throw new NotSupportedException();
             }
 
+            
             var volumetricWeight = Math.Round(Volume.Value / (calculationFactor ?? factor), 6);
             return new Weight(volumetricWeight, weightUnit);
         }
@@ -81,13 +82,16 @@ namespace SW.PrimitiveTypes
             switch (Unit)
             {
                 case DimensionUnit.cm:
-                    result = toUnit == DimensionUnit.M ? FromCmToM(val) : FromCmToIn(val);
+                    result = toUnit == DimensionUnit.M ? DimensionConvert.FromCmToM(val) :
+                        DimensionConvert.FromCmToIn(val);
                     break;
                 case DimensionUnit.M:
-                    result = toUnit == DimensionUnit.cm ? FromMToCm(val) : FromMToIn(val);
+                    result = toUnit == DimensionUnit.cm ? DimensionConvert.FromMToCm(val) :
+                        DimensionConvert.FromMToIn(val);
                     break;
                 case DimensionUnit.@in:
-                    result = toUnit == DimensionUnit.M ? FromInToM(val) : FromInToCm(val);
+                    result = toUnit == DimensionUnit.M ? DimensionConvert.FromInToM(val) :
+                        DimensionConvert.FromInToCm(val);
                     break;
                 default:
                     throw new NotSupportedException();
@@ -95,12 +99,6 @@ namespace SW.PrimitiveTypes
 
             return Math.Round(result, 6);
         }
-        decimal FromCmToM(decimal val) => val / 100m;
-        decimal FromMToCm(decimal val) => val * 100m;
-        decimal FromCmToIn(decimal val) => val / 2.54m;
-        decimal FromInToCm(decimal val) => val * 2.54m;
-        decimal FromMToIn(decimal val) => val * 39.37m;
-        decimal FromInToM(decimal val) => val / 39.37m;
 
         public override string ToString()
         {
