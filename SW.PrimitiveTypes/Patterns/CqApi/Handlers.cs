@@ -18,11 +18,6 @@ namespace SW.PrimitiveTypes
         Task<object> Handle(TRequest request);
     }
 
-    //public interface IVoidCommandHandler<in TRequest> : IHandler
-    //{
-    //    Task Handle(TRequest request);
-    //}
-
     public interface IGetHandler<in TKey> : IHandler
     {
         Task<object> Handle(TKey key, bool lookup = false);
