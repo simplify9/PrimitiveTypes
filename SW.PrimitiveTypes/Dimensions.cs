@@ -24,38 +24,80 @@ namespace SW.PrimitiveTypes
             Unit = unit;
         }
 
-        public decimal? Length { get;  set; }
-        public decimal? Width { get;  set; }
-        public decimal? Height { get;  set; }
+        public decimal? Length { get; set; }
+        public decimal? Width { get; set; }
+        public decimal? Height { get; set; }
 
-        public DimensionUnit? Unit { get;  set; }
-        
+        public DimensionUnit? Unit { get; set; }
+
+        public decimal? Volume => Length == null ? (decimal?)null : Length.Value * Width.Value * Height.Value;
 
 
-        public Weight GetVolumetricWeight()
+        public Weight GetVolumetricWeight(decimal? calculationFactor = null)
         {
-            if (Length == null)
-            {
-                throw new InvalidOperationException("Cannot calculate the volumetric weight from empty dimensions");
-            }
 
-            var volume = Length.Value * Width.Value * Height.Value;
-
+            decimal factor;
+            
+            WeightUnit weightUnit; 
             //6000 ccm / kg, 166 cu in/ lb, 366 cu in/ kg
             switch (Unit)
             {
                 case DimensionUnit.cm:
-                    return new Weight(volume / 6000, WeightUnit.kg);
-
+                    factor = 5000m;
+                    weightUnit = WeightUnit.kg;
+                    break;
                 case DimensionUnit.M:
-                    return new Weight(1000 * volume / 6000, WeightUnit.kg);
-
+                    weightUnit = WeightUnit.kg;
+                    factor = 0.5m;
+                    break;
                 case DimensionUnit.@in:
-                    return new Weight(volume / 166, WeightUnit.lb);
-
+                    weightUnit = WeightUnit.lb;                    
+                    factor = 138.3755m;
+                    break;
                 default:
                     throw new NotSupportedException();
             }
+
+            
+            var volumetricWeight = Math.Round(Volume.Value / (calculationFactor ?? factor), 6);
+            return new Weight(volumetricWeight, weightUnit);
+        }
+
+        public Dimensions Convert(DimensionUnit toUnit)
+        {
+            if (Length == null)
+                return Empty();
+            return new Dimensions(Convert(toUnit, Length.Value),
+                Convert(toUnit, Width.Value),
+                Convert(toUnit, Height.Value),
+                toUnit);
+        }
+
+        private decimal Convert(DimensionUnit toUnit, decimal val)
+        {
+            if (toUnit == Unit)
+                return val;
+
+            decimal result;
+            switch (Unit)
+            {
+                case DimensionUnit.cm:
+                    result = toUnit == DimensionUnit.M ? DimensionConvert.FromCmToM(val) :
+                        DimensionConvert.FromCmToIn(val);
+                    break;
+                case DimensionUnit.M:
+                    result = toUnit == DimensionUnit.cm ? DimensionConvert.FromMToCm(val) :
+                        DimensionConvert.FromMToIn(val);
+                    break;
+                case DimensionUnit.@in:
+                    result = toUnit == DimensionUnit.M ? DimensionConvert.FromInToM(val) :
+                        DimensionConvert.FromInToCm(val);
+                    break;
+                default:
+                    throw new NotSupportedException();
+            }
+
+            return Math.Round(result, 6);
         }
 
         public override string ToString()
