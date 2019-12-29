@@ -7,7 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SW.PrimitiveTypes", "SW.Pri
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SW.PrimitiveTypes.Util1", "SW.PrimitiveTypes.Util1\SW.PrimitiveTypes.Util1.csproj", "{90067289-4F45-4FC6-A057-D3F40407B36B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SW.PrimitiveTypes.UnitTests", "SW.PrimitiveTypes.UnitTests\SW.PrimitiveTypes.UnitTests.csproj", "{CF3C2102-EC94-419C-A65C-013E13042A97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SW.PrimitiveTypes.UnitTests", "SW.PrimitiveTypes.UnitTests\SW.PrimitiveTypes.UnitTests.csproj", "{CF3C2102-EC94-419C-A65C-013E13042A97}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F08DC13B-98FD-4F4F-B660-F301423D216B}"
+	ProjectSection(SolutionItems) = preProject
+		azure-pipelines.yml = azure-pipelines.yml
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
