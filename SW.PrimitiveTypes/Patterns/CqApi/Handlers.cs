@@ -9,11 +9,11 @@ namespace SW.PrimitiveTypes
 
     public interface IHandler { }
 
-    public interface ICommandHandler<in TKey, in TRequest> : IHandler
+    public interface ICommandHandler<in TKey, in TRequest> : IHandler where TRequest : class
     {
         Task<object> Handle(TKey key, TRequest request);
     }
-    public interface ICommandHandler<in TRequest> : IHandler
+    public interface ICommandHandler<in TRequest> : IHandler where TRequest : class
     {
         Task<object> Handle(TRequest request);
     }
@@ -23,14 +23,14 @@ namespace SW.PrimitiveTypes
         Task<object> Handle(TKey key, bool lookup = false);
     }
 
-    public interface ISearchHandler : IHandler
+    public interface ISearchyHandler : IHandler
     {
         Task<object> Handle(SearchyRequest searchyRequest, bool lookup = false, string searchPhrase = null);
     }
 
     public interface IDeleteHandler<in TKey> : IHandler
     {
-        Task Handle(TKey key);
+        Task<object> Handle(TKey key);
     }
 
 }
