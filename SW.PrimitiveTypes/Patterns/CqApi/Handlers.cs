@@ -9,6 +9,11 @@ namespace SW.PrimitiveTypes
 
     public interface IHandler { }
 
+    public interface ICommandHandler : IHandler
+    {
+        Task<object> Handle();
+    }
+
     public interface ICommandHandler<in TKey, in TRequest> : IHandler where TRequest : class
     {
         Task<object> Handle(TKey key, TRequest request);
@@ -26,6 +31,11 @@ namespace SW.PrimitiveTypes
     public interface IQueryHandler<in TRequest> : IHandler where TRequest : class
     {
         Task<object> Handle(TRequest request);
+    }
+
+    public interface IQueryHandler : IHandler 
+    {
+        Task<object> Handle();
     }
 
     public interface ISearchyHandler : IHandler
