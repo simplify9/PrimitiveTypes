@@ -23,6 +23,11 @@ namespace SW.PrimitiveTypes
         Task<object> Handle(TKey key, bool lookup = false);
     }
 
+    public interface IQueryHandler<in TRequest> : IHandler where TRequest : class
+    {
+        Task<object> Handle(TRequest request);
+    }
+
     public interface ISearchyHandler : IHandler
     {
         Task<object> Handle(SearchyRequest searchyRequest, bool lookup = false, string searchPhrase = null);
