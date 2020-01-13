@@ -66,7 +66,7 @@ namespace SW.PrimitiveTypes
         {
             var nakedType = Nullable.GetUnderlyingType(type) ?? type;
 
-            switch (Type.GetTypeCode(nakedType.GetType()))
+            switch (Type.GetTypeCode(nakedType))
             {
                 case TypeCode.Byte:
                 case TypeCode.SByte:
