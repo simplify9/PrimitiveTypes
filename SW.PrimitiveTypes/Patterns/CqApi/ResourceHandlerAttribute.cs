@@ -5,13 +5,13 @@ using System.Text;
 namespace SW.PrimitiveTypes
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, Inherited = false)]
-    public class ResourceHanlderAttribute : Attribute
+    public class ResourceHandlerAttribute : Attribute
     {
-        public ResourceHanlderAttribute()
+        public ResourceHandlerAttribute()
         {
         }
 
-        public ResourceHanlderAttribute(string name)
+        public ResourceHandlerAttribute(string name)
         {
             Name = name ?? throw new ArgumentNullException(nameof(name));
         }
