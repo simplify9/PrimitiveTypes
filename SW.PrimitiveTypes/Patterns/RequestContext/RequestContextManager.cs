@@ -14,7 +14,7 @@ namespace SW.PrimitiveTypes
             this.requestContexts = requestContexts;
         }
 
-        public IRequestContext Current => requestContexts.Where(e => e.IsValid).SingleOrDefault();
+        public IRequestContext Current => requestContexts.Where(e => e.IsValid).FirstOrDefault();
 
     }
 }
