@@ -8,7 +8,6 @@ namespace SW.PrimitiveTypes
     {
         public Type Type;
         public int StatusCode;
-        public string Conditions;
         public string Description;
     }
 }
