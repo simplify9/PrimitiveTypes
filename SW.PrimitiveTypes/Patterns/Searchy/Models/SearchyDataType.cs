@@ -47,6 +47,7 @@ namespace SW.PrimitiveTypes
                             SearchyRule.LessThanOrEquals,
                             SearchyRule.GreaterThan,
                             SearchyRule.GreaterThanOrEquals,
+                            SearchyRule.Range,
                     };
 
                 case Boolean:
