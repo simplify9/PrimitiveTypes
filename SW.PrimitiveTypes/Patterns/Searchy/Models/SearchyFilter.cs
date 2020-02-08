@@ -44,7 +44,7 @@ namespace SW.PrimitiveTypes
         {
             if (!string.IsNullOrEmpty(queryString))
             {
-                var arr = queryString.Split(':');
+                var arr = queryString.Split(new char[] { ':' }, 3);
                 if (arr.Length == 3)
                 {
                     Field = arr[0];
@@ -78,7 +78,7 @@ namespace SW.PrimitiveTypes
 
         public override string ToString()
         {
-            return $"filter={Field}:{(int)Rule}:{((Value==null) ? null : Uri.EscapeDataString(Value.ToString()))}";
+            return $"filter={Field}:{(int)Rule}:{((Value == null) ? null : Uri.EscapeDataString(Value.ToString()))}";
         }
     }
 }
