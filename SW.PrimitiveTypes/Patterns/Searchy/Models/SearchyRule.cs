@@ -11,6 +11,7 @@ namespace SW.PrimitiveTypes
         GreaterThanOrEquals = 6,
         LessThan = 7,
         LessThanOrEquals = 8,
-        EqualsToList = 9
+        EqualsToList = 9,
+        Range = 21
     }
 }
