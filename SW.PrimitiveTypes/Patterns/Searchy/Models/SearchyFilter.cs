@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace SW.PrimitiveTypes
 {
@@ -49,7 +50,27 @@ namespace SW.PrimitiveTypes
                 {
                     Field = arr[0];
                     Rule = (SearchyRule)int.Parse(arr[1]);
-                    Value = arr[2];
+
+                    //handle arrays
+
+                    if (arr[2].StartsWith(SearchyDataType.Text + "|"))
+                    {
+                        Value = arr[2].Split(new char[] { '|' }).Skip(1).Select(value => decimal.Parse(value)).ToArray();
+                    }
+
+                    else if (arr[2].StartsWith(SearchyDataType.Number + "|"))
+                    {
+                        Value = arr[2].Split(new char[] { '|' }).Skip(1).Select(value => decimal.Parse(value)).ToArray();
+                    }
+
+                    else if (arr[2].StartsWith(SearchyDataType.Date + "|"))
+                    {
+                        Value = arr[2].Split(new char[] { '|' }).Skip(1).Select(value => DateTime.Parse(value)).ToArray();
+                    }
+
+                    else
+
+                        Value = arr[2];
                 }
             }
 
@@ -78,7 +99,17 @@ namespace SW.PrimitiveTypes
 
         public override string ToString()
         {
-            return $"filter={Field}:{(int)Rule}:{((Value == null) ? null : Uri.EscapeDataString(Value.ToString()))}";
+            string valueString = null;
+
+            if (ValueString != null) valueString = ValueString;
+            else if (ValueStringArray != null) valueString = SearchyDataType.Text + "|" + string.Join("|", ValueStringArray.Select(value => value.ToString()));
+            else if (ValueDecimal != null) valueString = ValueDecimal.ToString();
+            else if (ValueDecimalArray != null) valueString = SearchyDataType.Number + "|" + string.Join("|", ValueDecimalArray.Select(value => value.ToString()));
+            else if (ValueDateTime != null) valueString = ValueDateTime.Value.ToString("O");
+            else if (ValueDateTimeArray != null) valueString = SearchyDataType.Date + "|" + string.Join("|", ValueDateTimeArray.Select(value => value.ToString("O")));
+            else if (Value != null) valueString = Value.ToString();
+
+            return $"filter={Field}:{(int)Rule}:{((valueString == null) ? null : Uri.EscapeDataString(valueString))}";
         }
     }
 }

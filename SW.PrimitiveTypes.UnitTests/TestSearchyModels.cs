@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,6 +9,31 @@ namespace SW.PrimitiveTypes.UnitTests
     [TestClass]
     public class TestSearchyModels
     {
+
+        [TestMethod]
+        public void TestFilterSerialization()
+        {
+            var filter = new SearchyFilter()
+            {
+                Field = "CreatedOn",
+                Rule =   SearchyRule.EqualsTo,
+                ValueDateTimeArray = new DateTime[] { DateTime.Now, DateTime.UtcNow }
+            };
+
+            var filterDeserialized = new SearchyFilter(Uri.UnescapeDataString(filter.ToString())); 
+
+            var filter2 = new SearchyFilter
+            {
+                Field = "CreatedOn",
+                Rule = SearchyRule.EqualsTo,
+                ValueDateTimeArray = new DateTime[] { DateTime.Now }
+            };
+
+            var filter2Deserialized = new SearchyFilter(Uri.UnescapeDataString(filter2.ToString()));
+
+        }
+
+
         [TestMethod]
         public void TestMethod1()
         {
