@@ -56,7 +56,7 @@ namespace SW.PrimitiveTypes
 
         public override string ToString()
         {
-            return Value == null? "[Empty]" : string.Format("{0}{1}", Value, Unit);
+            return Value == null? "[Empty]" : string.Format("{0:0.###}{1}", Value, Unit);
         }
 
         public bool Equals(Weight other)
