@@ -9,6 +9,9 @@ namespace SW.PrimitiveTypes.Util1
     {
         static void Main(string[] args)
         {
+
+            IHandle<BaseDomainEvent> hanlder = (IHandle<BaseDomainEvent>)(new Event1Hanlder());
+
             HashSet<string> hashSet = new HashSet<string>();
             foreach (CultureInfo item in CultureInfo.GetCultures(CultureTypes.AllCultures))
                 hashSet.Add(item.TwoLetterISOLanguageName);
@@ -17,6 +20,19 @@ namespace SW.PrimitiveTypes.Util1
                 Console.WriteLine(currency);
 
             Console.ReadLine();
+        }
+
+        class Event1 : BaseDomainEvent
+        {
+
+        }
+
+        class Event1Hanlder : IHandle<Event1>
+        {
+            public Task Handle(Event1 domainEvent)
+            {
+                throw new NotImplementedException();
+            }
         }
 
 

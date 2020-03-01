@@ -13,7 +13,6 @@ namespace SW.PrimitiveTypes
 
         public Dimensions()
         {
-
         }
 
         public Dimensions(decimal length, decimal width, decimal height, DimensionUnit unit)
@@ -63,10 +62,16 @@ namespace SW.PrimitiveTypes
             return new Weight(volumetricWeight, weightUnit);
         }
 
+        public bool IsValid()
+        {
+            if (Height == null || Width ==null || Length == null || Unit == null) return false;
+            return true;
+        }
+
         public Dimensions Convert(DimensionUnit toUnit)
         {
-            if (Length == null)
-                return Empty();
+            if (!IsValid()) return null;
+
             return new Dimensions(Convert(toUnit, Length.Value),
                 Convert(toUnit, Width.Value),
                 Convert(toUnit, Height.Value),
@@ -102,6 +107,8 @@ namespace SW.PrimitiveTypes
 
         public override string ToString()
         {
+            if (!IsValid()) return string.Empty;
+
             return string.Format(
                 "{0:0.###}{1} X {2:0.###}{3} X {4:0.###}{5}", 
                 Length, 

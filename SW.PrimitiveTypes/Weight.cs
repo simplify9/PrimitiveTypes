@@ -15,22 +15,8 @@ namespace SW.PrimitiveTypes
             return new Weight { };
         }
 
-        //public static Weight Zero
-        //{
-        //    get
-        //    {
-        //        return new Weight(0, WeightUnit.g);
-        //    }
-        //}
-        
-        //public Weight ChangeUnit(DimensionUnit toUnit)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        public  Weight()
+        public Weight()
         {
-
         }
 
         public Weight(Weight another)
@@ -45,7 +31,7 @@ namespace SW.PrimitiveTypes
             Value = value;
             Unit = unit;
         }
-        
+
         public override bool Equals(object another)
         {
             if (another == null) return false;
@@ -54,9 +40,54 @@ namespace SW.PrimitiveTypes
             return Value == weight.Value && Unit == weight.Unit;
         }
 
+        public bool IsValid()
+        {
+            if (Value == null || Unit == null) return false;
+            return true;
+        }
+
+        public Weight Convert(WeightUnit weightUnit)
+        {
+            if (!IsValid()) return null;
+
+            decimal valueInGrams = 0;
+
+            switch (Unit)
+            {
+                case WeightUnit.gm:
+                    valueInGrams = Value.Value;
+                    break;
+                case WeightUnit.kg:
+                    valueInGrams = Value.Value * 1000m;
+                    break;
+                case WeightUnit.lb:
+                    valueInGrams = Value.Value * 453.592m;
+                    break;
+                case WeightUnit.oz:
+                    valueInGrams = Value.Value * 28.3495m;
+                    break;
+            }
+
+            switch (weightUnit)
+            {
+                case WeightUnit.gm:
+                    return new Weight(valueInGrams, weightUnit);
+                case WeightUnit.kg:
+                    return new Weight(valueInGrams / 1000m, weightUnit);
+                case WeightUnit.lb:
+                    return new Weight(valueInGrams / 453.592m, weightUnit);
+                case WeightUnit.oz:
+                    return new Weight(valueInGrams / 28.3495m, weightUnit);
+            }
+
+            return null;
+        }
+
         public override string ToString()
         {
-            return Value == null? "[Empty]" : string.Format("{0:0.###}{1}", Value, Unit);
+            if (!IsValid()) return string.Empty;
+
+            return string.Format("{0:0.###}{1}", Value, Unit);
         }
 
         public bool Equals(Weight other)
