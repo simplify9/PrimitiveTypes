@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SW.PrimitiveTypes.Patterns.CloudFiles
-{
+namespace SW.PrimitiveTypes
+{ 
     public class WriteFileSettings
     {
         public string Key { get; set; }
