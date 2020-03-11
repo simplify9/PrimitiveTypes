@@ -15,7 +15,31 @@ namespace SW.PrimitiveTypes
         /// <param name="settings"></param>
         /// <returns></returns>
         Task WriteAcync(Stream inputStream, WriteFileSettings settings);
-       
+
+        /// <summary>
+        /// Get a public url for the a file with an a specific expiry
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="expiry"></param>
+        /// <returns></returns>
+        string GetSignedUrl(string key, TimeSpan expiry);
+
+        /// <summary>
+        /// Method to open and update a file 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        Task<WriteWrapper> OpenWriteAsync(string key);
+
+        /// <summary>
+        /// Method to read a file
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        Task<Stream> OpenReadAcync(string key);
+
+
+
 
     }
 }
