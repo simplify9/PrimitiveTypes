@@ -25,6 +25,13 @@ namespace SW.PrimitiveTypes
         string GetSignedUrl(string key, TimeSpan expiry);
 
         /// <summary>
+        /// Get a url that only works for public files
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        string GetUnsignedUrl(string key);
+
+        /// <summary>
         /// Method to open and update a file 
         /// </summary>
         /// <param name="key"></param>
