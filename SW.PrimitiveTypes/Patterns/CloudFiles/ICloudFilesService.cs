@@ -29,14 +29,14 @@ namespace SW.PrimitiveTypes
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        string GetUnsignedUrl(string key);
+        string GetUrl(string key);
 
         /// <summary>
         /// Method to open and update a file 
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        Task<WriteWrapper> OpenWriteAsync(string key);
+        WriteWrapper OpenWrite(WriteFileSettings settings);
 
         /// <summary>
         /// Method to read a file
