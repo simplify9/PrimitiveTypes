@@ -17,6 +17,14 @@ namespace SW.PrimitiveTypes
         Task WriteAcync(Stream inputStream, WriteFileSettings settings);
 
         /// <summary>
+        ///  Method to write a text file asynchronously (private or public)
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="settings"></param>
+        /// <returns></returns>
+        Task WriteTextAcync(string text, WriteFileSettings settings);
+
+        /// <summary>
         /// Get a public url for the a file with an a specific expiry
         /// </summary>
         /// <param name="key"></param>
@@ -44,6 +52,8 @@ namespace SW.PrimitiveTypes
         /// <param name="key"></param>
         /// <returns></returns>
         Task<Stream> OpenReadAcync(string key);
+
+
 
 
 
