@@ -22,7 +22,7 @@ namespace SW.PrimitiveTypes
         /// <param name="text"></param>
         /// <param name="settings"></param>
         /// <returns></returns>
-        Task WriteTextAcync(string text, WriteFileSettings settings);
+        Task<RemoteBlob> WriteTextAcync(string text, WriteFileSettings settings);
 
         /// <summary>
         /// Get a public url for the a file with an a specific expiry
