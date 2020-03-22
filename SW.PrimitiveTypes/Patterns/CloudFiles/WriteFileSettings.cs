@@ -6,6 +6,8 @@ namespace SW.PrimitiveTypes
 { 
     public class WriteFileSettings
     {
+
+
         /// <summary>
         /// It consists of the path and filename
         /// </summary>
@@ -20,5 +22,10 @@ namespace SW.PrimitiveTypes
         /// Flag to set the file to be public viewed
         /// </summary>
         public bool Public { get; set; }
+
+        /// <summary>
+        /// Flag to close the input stream, default: true
+        /// </summary>
+        public bool CloseInputStream { get; set; } = true;
     }
 }

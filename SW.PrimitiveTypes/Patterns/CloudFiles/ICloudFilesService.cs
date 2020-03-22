@@ -14,7 +14,7 @@ namespace SW.PrimitiveTypes
         /// <param name="inputStream"></param>
         /// <param name="settings"></param>
         /// <returns></returns>
-        Task WriteAcync(Stream inputStream, WriteFileSettings settings);
+        Task<RemoteBlob> WriteAcync(Stream inputStream, WriteFileSettings settings);
 
         /// <summary>
         ///  Method to write a text file asynchronously (private or public)
