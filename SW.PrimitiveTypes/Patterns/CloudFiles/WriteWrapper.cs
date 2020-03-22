@@ -13,21 +13,27 @@ namespace SW.PrimitiveTypes
         private readonly ICloudFilesService cloudFilesService;
         private readonly WriteFileSettings writeFileSettings;
         private HttpWebResponse httpWebResponse;
+        private Stream stream;
 
         public WriteWrapper(HttpWebRequest httpWebRequest, ICloudFilesService cloudFilesService, WriteFileSettings writeFileSettings)
         {
-            Stream = httpWebRequest.GetRequestStream();
+            //Stream = httpWebRequest.GetRequestStream();
             this.httpWebRequest = httpWebRequest;
             this.cloudFilesService = cloudFilesService;
             this.writeFileSettings = writeFileSettings;
         }
 
-        public Stream Stream { get; }
+        async public Task<Stream> GetStreamAsync()
+        {
+            stream = await httpWebRequest.GetRequestStreamAsync();
+            return stream; 
+        }
 
         async public Task<RemoteBlob> CompleteRequestAsync()
         {
+            var contentLength = stream.Length;
             httpWebResponse = (HttpWebResponse)(await httpWebRequest.GetResponseAsync());
-            var contentLength = httpWebRequest.ContentLength;
+
             httpWebResponse.Close();
 
             return new RemoteBlob
@@ -36,12 +42,12 @@ namespace SW.PrimitiveTypes
                 MimeType = writeFileSettings.ContentType,
                 Name = writeFileSettings.Key,
                 Size = Convert.ToInt32(contentLength)
-            }; 
+            };
         }
 
         public void Dispose()
         {
-            Stream.Dispose();
+            stream?.Dispose();
             httpWebResponse?.Dispose();
         }
 
