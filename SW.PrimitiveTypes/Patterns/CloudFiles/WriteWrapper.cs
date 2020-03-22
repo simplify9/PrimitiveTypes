@@ -31,7 +31,7 @@ namespace SW.PrimitiveTypes
 
         async public Task<RemoteBlob> CompleteRequestAsync()
         {
-            var contentLength = stream.Length;
+            //var contentLength = httpWebRequest.;
             httpWebResponse = (HttpWebResponse)(await httpWebRequest.GetResponseAsync());
 
             httpWebResponse.Close();
@@ -41,7 +41,7 @@ namespace SW.PrimitiveTypes
                 Location = writeFileSettings.Public ? cloudFilesService.GetUrl(writeFileSettings.Key) : cloudFilesService.GetSignedUrl(writeFileSettings.Key, TimeSpan.FromHours(1)),
                 MimeType = writeFileSettings.ContentType,
                 Name = writeFileSettings.Key,
-                Size = Convert.ToInt32(contentLength)
+                //Size = Convert.ToInt32(contentLength)
             };
         }
 
