@@ -53,8 +53,12 @@ namespace SW.PrimitiveTypes
         /// <returns></returns>
         Task<Stream> OpenReadAcync(string key);
 
-
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="prefix"></param>
+        /// <returns></returns>
+        Task<IEnumerable<CloudFileInfo>> ListAsync(string prefix);
 
 
 
