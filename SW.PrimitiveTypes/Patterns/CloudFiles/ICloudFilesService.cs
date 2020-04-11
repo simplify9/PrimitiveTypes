@@ -60,6 +60,13 @@ namespace SW.PrimitiveTypes
         /// <returns></returns>
         Task<IEnumerable<CloudFileInfo>> ListAsync(string prefix);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        Task<IReadOnlyDictionary<string, string>> GetMetadata(string key)
+
 
 
     }
