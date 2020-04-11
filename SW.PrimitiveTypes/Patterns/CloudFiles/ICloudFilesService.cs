@@ -65,7 +65,7 @@ namespace SW.PrimitiveTypes
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        Task<IReadOnlyDictionary<string, string>> GetMetadata(string key)
+        Task<IReadOnlyDictionary<string, string>> GetMetadata(string key);
 
 
 
