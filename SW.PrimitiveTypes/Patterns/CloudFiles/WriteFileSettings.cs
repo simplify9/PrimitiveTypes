@@ -6,6 +6,10 @@ namespace SW.PrimitiveTypes
 { 
     public class WriteFileSettings
     {
+        public WriteFileSettings()
+        {
+            Metadata = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        }
 
 
         /// <summary>
@@ -27,5 +31,10 @@ namespace SW.PrimitiveTypes
         /// Flag to close the input stream, default: true
         /// </summary>
         public bool CloseInputStream { get; set; } = true;
+
+        /// <summary>
+        /// File metadata dictionary to be saved 
+        /// </summary>
+        public IDictionary<string, string> Metadata { get; set; }
     }
 }
