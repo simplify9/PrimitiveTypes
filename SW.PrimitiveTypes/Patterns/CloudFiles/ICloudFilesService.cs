@@ -14,7 +14,7 @@ namespace SW.PrimitiveTypes
         /// <param name="inputStream"></param>
         /// <param name="settings"></param>
         /// <returns></returns>
-        Task<RemoteBlob> WriteAcync(Stream inputStream, WriteFileSettings settings);
+        Task<RemoteBlob> WriteAsync(Stream inputStream, WriteFileSettings settings);
 
         /// <summary>
         ///  Method to write a text file asynchronously (private or public)
@@ -22,7 +22,7 @@ namespace SW.PrimitiveTypes
         /// <param name="text"></param>
         /// <param name="settings"></param>
         /// <returns></returns>
-        Task<RemoteBlob> WriteTextAcync(string text, WriteFileSettings settings);
+        Task<RemoteBlob> WriteTextAsync(string text, WriteFileSettings settings);
 
         /// <summary>
         /// Get a public url for the a file with an a specific expiry
@@ -51,7 +51,7 @@ namespace SW.PrimitiveTypes
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        Task<Stream> OpenReadAcync(string key);
+        Task<Stream> OpenReadAsync(string key);
 
         /// <summary>
         /// 
