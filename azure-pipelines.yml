@@ -51,6 +51,7 @@ steps:
 
 
 - task: GitHubRelease@1
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   inputs:
     gitHubConnection: 'simplify9github'
     repositoryName: '$(Build.Repository.Name)'
