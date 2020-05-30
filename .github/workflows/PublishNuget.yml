@@ -25,13 +25,10 @@ jobs:
       run: dotnet build SW.PrimitiveTypes/SW.PrimitiveTypes.csproj --configuration Release --no-restore
     - name: Test
       run: dotnet test SW.PrimitiveTypes.UnitTests/SW.PrimitiveTypes.UnitTests.csproj --no-restore --verbosity normal       
+    
+    - name: Pack with dotnet
+      run: dotnet pack SW.PrimitiveTypes/SW.PrimitiveTypes.csproj --output nuget-packages --configuration Release
+    - name: Push with dotnet
+      run: dotnet nuget push nuget-packages/*.nupkg --api-key ${{ secrets.SWNUGETKEY }} --source https://api.nuget.org/v3/index.json
 
-    - name: Build solution and generate NuGet package
-      run: |  
-        cd SW.PrimitiveTypes
-        dotnet pack -c Release -o out  
-
-    - name: Push generated package to GitHub registry
-      run: dotnet nuget push **/*.nupkg --api-key ${{secrets.SWNUGETKEY}}  --source https://api.nuget.org/v3/index.json
-          
-      
+ 
