@@ -49,5 +49,11 @@ steps:
     nuGetFeedType: 'external'
     publishFeedCredentials: 'swnuget' 
 
+- task: GithubRelease@0
+  displayName: 'Create GitHub Release'
+  inputs:
+   githubConnection: simplify9
+   repositoryName: simplify9/PrimitiveTypes
+
 
 
