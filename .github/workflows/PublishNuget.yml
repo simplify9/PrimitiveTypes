@@ -1,34 +1,34 @@
-name: .NET Core
+#name: .NET Core
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+#on:
+#  push:
+#    branches: [ master ]
+#  pull_request:
+#    branches: [ master ]
 
-jobs:
-  build:
+#jobs:
+#  build:
 
-    runs-on: ubuntu-latest
+#    runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 3.1.101
+#    steps:
+ #   - uses: actions/checkout@v2
+ #   - name: Setup .NET Core
+ #     uses: actions/setup-dotnet@v1
+ #     with:
+ #       dotnet-version: 3.1.101
         
         
-    - name: Install dependencies
-      run: dotnet restore SW.PrimitiveTypes/SW.PrimitiveTypes.csproj
-    - name: Build
-      run: dotnet build SW.PrimitiveTypes/SW.PrimitiveTypes.csproj --configuration Release --no-restore
-    - name: Test
-      run: dotnet test SW.PrimitiveTypes.UnitTests/SW.PrimitiveTypes.UnitTests.csproj --no-restore --verbosity normal       
-    
-    - name: Pack with dotnet
-      run: dotnet pack SW.PrimitiveTypes/SW.PrimitiveTypes.csproj --output nuget-packages --configuration Release -p:PackageVersion=$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
-    - name: Push with dotnet
-      run: dotnet nuget push nuget-packages/*.nupkg --api-key ${{ secrets.SWNUGETKEY }} --source https://api.nuget.org/v3/index.json
+ #   - name: Install dependencies
+ #     run: dotnet restore SW.PrimitiveTypes/SW.PrimitiveTypes.csproj
+ #   - name: Build
+ #     run: dotnet build SW.PrimitiveTypes/SW.PrimitiveTypes.csproj --configuration Release --no-restore
+ #   - name: Test
+ #     run: dotnet test SW.PrimitiveTypes.UnitTests/SW.PrimitiveTypes.UnitTests.csproj --no-restore --verbosity normal       
+ #   
+ #   - name: Pack with dotnet
+ #     run: dotnet pack SW.PrimitiveTypes/SW.PrimitiveTypes.csproj --output nuget-packages --configuration Release -p:PackageVersion=$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
+ #   - name: Push with dotnet
+ #     run: dotnet nuget push nuget-packages/*.nupkg --api-key ${{ secrets.SWNUGETKEY }} --source https://api.nuget.org/v3/index.json
 
 
