@@ -33,6 +33,7 @@ steps:
     projects: '**/*Tests/*.csproj'
 
 - task: DotNetCoreCLI@2
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   displayName: 'dotnet pack'
   inputs:
     command: pack
@@ -41,6 +42,7 @@ steps:
     versioningScheme: byBuildNumber
 
 - task: NuGetCommand@2
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   inputs:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
