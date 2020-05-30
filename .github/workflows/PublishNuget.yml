@@ -17,8 +17,6 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.101
-      env:
-        NUGET_AUTH_TOKEN: ${{secrets.SWNUGETKEY}} 
         
         
     - name: Install dependencies
@@ -34,5 +32,6 @@ jobs:
         dotnet pack -c Release -o out  
 
     - name: Push generated package to GitHub registry
-      run: dotnet nuget push ./SW.PrimitiveTypes/out/*.nupkg --skip-duplicate --no-symbols true
+      run: dotnet nuget push **/*.nupkg --api-key ${{secrets.SWNUGETKEY}}  --source https://api.nuget.org/v3/index.json
+          
       
