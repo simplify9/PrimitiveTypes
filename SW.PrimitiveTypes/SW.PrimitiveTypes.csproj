@@ -3,8 +3,12 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>SimplyWorks.PrimitiveTypes</PackageId>
-    <Authors>SimplyWorks</Authors>
+    <Authors>Simplify9</Authors>
     <Product>SimplyWorks.PrimitiveTypes</Product>
+    <PackageProjectUrl>https://github.com/simplify9/PrimitiveTypes</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/simplify9/PrimitiveTypes</RepositoryUrl>
+    <Copyright>Simplify9</Copyright>
+    <Company>Simplify9</Company>
   </PropertyGroup>
 
 </Project>
