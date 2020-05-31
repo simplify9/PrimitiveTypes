@@ -59,7 +59,12 @@ steps:
     #target: '$(Build.SourceVersion)'
     #tagSource: 'gitTag'
     #tagSource: manual
-    #tag: $(Build.BuildNumber) 
+    #tag: $(Build.BuildNumber)
+    tagSource: userSpecifiedTag  
+    tag: '$(Build.BuildNumber)'  
+    title: '$(Build.BuildNumber)'  
+    assets: '**/*.nupkg'  
+    changeLogCompareToRelease: lastNonDraftRelease   
 
 
 
