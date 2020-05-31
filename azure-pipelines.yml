@@ -56,9 +56,10 @@ steps:
     gitHubConnection: 'simplify9github'
     repositoryName: '$(Build.Repository.Name)'
     action: 'create'
-    target: '$(Build.SourceVersion)'
-    tagSource: 'gitTag'
-    changeLogCompareToRelease: 'lastFullRelease'
-    changeLogType: 'commitBased'
+    #target: '$(Build.SourceVersion)'
+    #tagSource: 'gitTag'
+    #tagSource: manual
+    #tag: $(Build.BuildNumber) 
+
 
 
