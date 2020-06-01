@@ -50,21 +50,7 @@ steps:
     publishFeedCredentials: 'swnuget' 
 
 
-- task: GitHubRelease@1
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
-  inputs:
-    gitHubConnection: 'simplify9github'
-    repositoryName: '$(Build.Repository.Name)'
-    action: 'create'
-    #target: '$(Build.SourceVersion)'
-    #tagSource: 'gitTag'
-    #tagSource: manual
-    #tag: $(Build.BuildNumber)
-    tagSource: userSpecifiedTag  
-    tag: '$(Build.BuildNumber)'  
-    title: '$(Build.BuildNumber)'  
-    assets: '**/*.nupkg'  
-    changeLogCompareToRelease: lastNonDraftRelease   
+
 
 
 
