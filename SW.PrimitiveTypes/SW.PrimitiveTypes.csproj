@@ -9,6 +9,7 @@
     <RepositoryUrl>https://github.com/simplify9/PrimitiveTypes</RepositoryUrl>
     <Copyright>Simplify9</Copyright>
     <Company>Simplify9</Company>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>    
   </PropertyGroup>
 
 </Project>
