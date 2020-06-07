@@ -7,7 +7,7 @@ using System.Text;
 
 namespace SW.PrimitiveTypes
 {
-    internal static class IRequestContextExtensions
+    public static class IRequestContextExtensions
     {
 
         public static string GetNameIdentifier(this IRequestContext requestContext)
