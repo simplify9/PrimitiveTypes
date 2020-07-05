@@ -1,5 +1,8 @@
-﻿namespace SW.PrimitiveTypes
+﻿using System;
+
+namespace SW.PrimitiveTypes
 {
+    [Obsolete]
     public class CallResponse
     {
         public string Description = "";
@@ -37,6 +40,7 @@
         }
     }
 
+    [Obsolete]
     public class CallResponse<T>
     {
         public string Description = "";
