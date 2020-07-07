@@ -17,7 +17,13 @@ namespace SW.PrimitiveTypes
 
         public static string GetEntity(this IRequestContext requestContext)
         {
-            return requestContext.User.FindFirst("Entity").Value;
+            return requestContext.User.FindFirst("Entity")?.Value;
+        }
+
+        public static int GetTenant(this IRequestContext requestContext)
+        {
+            int.TryParse(requestContext.User.FindFirst("Tenant")?.Value, out var tenant);
+            return tenant;
         }
 
         public static bool HasGlobalAccess(this IRequestContext requestContext)
