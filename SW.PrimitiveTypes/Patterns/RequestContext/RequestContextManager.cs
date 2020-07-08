@@ -15,7 +15,7 @@ namespace SW.PrimitiveTypes
             this.requestContextProviders = requestContextProviders;
         }
 
-        async public Task<RequestContext> GetCurrentContext() //=> requestContexts.Where(async (e) => await e.GetIsValid()).FirstOrDefault();
+        async public Task<RequestContext> GetCurrentContext()
         {
             foreach (var provider in requestContextProviders)
             {

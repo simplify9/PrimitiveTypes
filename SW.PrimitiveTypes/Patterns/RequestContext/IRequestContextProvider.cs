@@ -8,18 +8,6 @@ namespace SW.PrimitiveTypes
 {
     public interface IRequestContextProvider
     {
-        //ClaimsPrincipal User { get; }
-        //IReadOnlyCollection<RequestValue> Values { get; }
-        //string Name { get; }
-        //bool IsValid { get; }
-
-        //Task<ClaimsPrincipal> GetUser();
-        //Task<IReadOnlyCollection<RequestValue>> GetValues();
-        //Task<string> GetCorrelationId();
-        //Task<bool> GetIsValid();
-
         Task<RequestContext> GetContext();
-
-
     }
 }
