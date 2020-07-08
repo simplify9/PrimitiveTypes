@@ -10,7 +10,7 @@ namespace SW.PrimitiveTypes
     {
         //ClaimsPrincipal User { get; }
         //IReadOnlyCollection<RequestValue> Values { get; }
-        string Name { get; }
+        //string Name { get; }
         //bool IsValid { get; }
 
         //Task<ClaimsPrincipal> GetUser();
