@@ -2,19 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SW.PrimitiveTypes
 {
     public class RequestContextManager
     {
-        private readonly IEnumerable<IRequestContext> requestContexts;
+        private readonly IEnumerable<IRequestContextProvider> requestContextProviders;
 
-        public RequestContextManager(IEnumerable<IRequestContext> requestContexts)
+        public RequestContextManager(IEnumerable<IRequestContextProvider> requestContextProviders)
         {
-            this.requestContexts = requestContexts;
+            this.requestContextProviders = requestContextProviders;
         }
 
-        public IRequestContext Current => requestContexts.Where(e => e.IsValid).FirstOrDefault();
+        async public Task<RequestContext> GetCurrentContext() //=> requestContexts.Where(async (e) => await e.GetIsValid()).FirstOrDefault();
+        {
+            foreach (var provider in requestContextProviders)
+            {
+                var requestContext = await provider.GetContext();
+                if (requestContext != null) return requestContext;
+            }
 
+            return null;
+        }
     }
 }
