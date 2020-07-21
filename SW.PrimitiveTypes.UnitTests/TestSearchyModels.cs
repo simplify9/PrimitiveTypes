@@ -76,7 +76,7 @@ namespace SW.PrimitiveTypes.UnitTests
         }
 
        
-        async Task<ISearchyResponse<string>> TestSearchyResponseCasting()
+        Task<ISearchyResponse<string>> TestSearchyResponseCasting()
         {
             var sr = new SearchyResponse<string>();
 
@@ -86,7 +86,7 @@ namespace SW.PrimitiveTypes.UnitTests
                 "val2"
             };
 
-            return sr;
+            return Task.FromResult(sr as ISearchyResponse<string>);
         }
     }
 }

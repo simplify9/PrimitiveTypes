@@ -61,7 +61,7 @@ namespace SW.PrimitiveTypes
                     valueInGrams = Value.Value * 1000m;
                     break;
                 case WeightUnit.lb:
-                    valueInGrams = Value.Value * 453.592m;
+                    valueInGrams = Value.Value * 453.59237m;
                     break;
                 case WeightUnit.oz:
                     valueInGrams = Value.Value * 28.3495m;
