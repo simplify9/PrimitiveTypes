@@ -8,7 +8,7 @@ namespace SW.PrimitiveTypes
     public class RequestContext
     {
 
-        bool isSet;
+        
 
         public RequestContext()
         {
@@ -25,17 +25,18 @@ namespace SW.PrimitiveTypes
 
         public void Set(ClaimsPrincipal user, IReadOnlyCollection<RequestValue> values, string correlationId)
         {
-            if (isSet) throw new SWException("Request context already set.");
+            if (IsValid) throw new SWException("Request context already set.");
 
             User = user;
             Values = values;
             CorrelationId = correlationId;
 
-            isSet = true;
+            IsValid = true;
         }
 
         public ClaimsPrincipal User { get; private set; }
         public IReadOnlyCollection<RequestValue> Values { get; private set; }
         public string CorrelationId { get; private set; }
+        public bool IsValid { get; private set; }
     }
 }
