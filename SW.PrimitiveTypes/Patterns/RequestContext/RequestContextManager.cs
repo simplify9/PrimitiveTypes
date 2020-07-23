@@ -1,29 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
 
-namespace SW.PrimitiveTypes
-{
-    public class RequestContextManager
-    {
-        private readonly IEnumerable<IRequestContextProvider> requestContextProviders;
+//namespace SW.PrimitiveTypes
+//{
+//    public class RequestContextManager
+//    {
+//        private readonly IEnumerable<IRequestContextProvider> requestContextProviders;
 
-        public RequestContextManager(IEnumerable<IRequestContextProvider> requestContextProviders)
-        {
-            this.requestContextProviders = requestContextProviders;
-        }
+//        public RequestContextManager(IEnumerable<IRequestContextProvider> requestContextProviders)
+//        {
+//            this.requestContextProviders = requestContextProviders;
+//        }
 
-        async public Task<RequestContext> GetCurrentContext()
-        {
-            foreach (var provider in requestContextProviders)
-            {
-                var requestContext = await provider.GetContext();
-                if (requestContext != null) return requestContext;
-            }
+//        async public Task<RequestContext> GetCurrentContext()
+//        {
+//            foreach (var provider in requestContextProviders)
+//            {
+//                var requestContext = await provider.GetContext();
+//                if (requestContext != null) return requestContext;
+//            }
 
-            return null;
-        }
-    }
-}
+//            return null;
+//        }
+//    }
+//}

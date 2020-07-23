@@ -7,9 +7,6 @@ namespace SW.PrimitiveTypes
 {
     public class RequestContext
     {
-
-        
-
         public RequestContext()
         {
         }
@@ -20,8 +17,6 @@ namespace SW.PrimitiveTypes
         //    Values = values;
         //    CorrelationId = correlationId;
         //}
-
-
 
         public void Set(ClaimsPrincipal user, IReadOnlyCollection<RequestValue> values, string correlationId)
         {

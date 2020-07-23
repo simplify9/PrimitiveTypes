@@ -18,10 +18,4 @@ namespace SW.PrimitiveTypes
         public string Value { get;  }
         public RequestValueType Type { get;  }
     }
-
-    public enum RequestValueType
-    {
-        QueryParameter,
-        HttpHeader,
-    }
 }
