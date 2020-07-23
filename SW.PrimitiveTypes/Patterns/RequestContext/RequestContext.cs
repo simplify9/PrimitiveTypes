@@ -7,15 +7,35 @@ namespace SW.PrimitiveTypes
 {
     public class RequestContext
     {
-        public RequestContext(ClaimsPrincipal user, IReadOnlyCollection<RequestValue> values, string correlationId)
+
+        bool isSet;
+
+        public RequestContext()
         {
+        }
+
+        //public RequestContext(ClaimsPrincipal user, IReadOnlyCollection<RequestValue> values, string correlationId)
+        //{
+        //    User = user;
+        //    Values = values;
+        //    CorrelationId = correlationId;
+        //}
+
+
+
+        public void Set(ClaimsPrincipal user, IReadOnlyCollection<RequestValue> values, string correlationId)
+        {
+            if (isSet) throw new SWException("Request context already set.");
+
             User = user;
             Values = values;
             CorrelationId = correlationId;
+
+            isSet = true;
         }
 
-        public ClaimsPrincipal User { get; }
-        public IReadOnlyCollection<RequestValue> Values { get; }
-        public string CorrelationId { get; }
+        public ClaimsPrincipal User { get; private set; }
+        public IReadOnlyCollection<RequestValue> Values { get; private set; }
+        public string CorrelationId { get; private set; }
     }
 }
