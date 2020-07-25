@@ -8,7 +8,7 @@ namespace SW.PrimitiveTypes
         /// <summary>
         /// Which user deleted this entity?
         /// </summary>
-        string DeletedBy { get; set; }
+        string DeletedBy { get; }
     }
 
 

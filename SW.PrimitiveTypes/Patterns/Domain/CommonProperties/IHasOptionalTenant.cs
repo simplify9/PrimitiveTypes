@@ -8,6 +8,6 @@
         /// <summary>
         /// TenantId of this entity.
         /// </summary>
-        int? TenantId { get; set; }
+        int? TenantId { get;  }
     }
 }

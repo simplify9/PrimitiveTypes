@@ -11,6 +11,6 @@ namespace SW.PrimitiveTypes
         /// <summary>
         /// Deletion time of this entity.
         /// </summary>
-        DateTime? DeletedOn { get; set; }
+        DateTime? DeletedOn { get;  }
     }
 }

@@ -9,7 +9,7 @@ namespace SW.PrimitiveTypes
         /// <summary>
         /// Id of the creator user of this entity.
         /// </summary>
-        string CreatedBy { get; set; }
+        string CreatedBy { get; }
     }
 
 

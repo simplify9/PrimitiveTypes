@@ -11,6 +11,6 @@
         /// <summary>
         /// Used to mark an Entity as 'Deleted'. 
         /// </summary>
-        bool Deleted { get; set; }
+        bool Deleted { get; }
     }
 }

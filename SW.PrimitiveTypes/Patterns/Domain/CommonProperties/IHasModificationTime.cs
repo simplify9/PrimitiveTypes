@@ -11,6 +11,6 @@ namespace SW.PrimitiveTypes
         /// <summary>
         /// The last modified time for this entity.
         /// </summary>
-        DateTime? ModifiedOn { get; set; }
+        DateTime? ModifiedOn { get;  }
     }
 }

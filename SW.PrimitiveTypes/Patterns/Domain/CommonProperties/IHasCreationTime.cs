@@ -11,6 +11,6 @@ namespace SW.PrimitiveTypes
         /// <summary>
         /// Creation time of this entity.
         /// </summary>
-        DateTime CreatedOn { get; set; }
+        DateTime CreatedOn { get; }
     }
 }
