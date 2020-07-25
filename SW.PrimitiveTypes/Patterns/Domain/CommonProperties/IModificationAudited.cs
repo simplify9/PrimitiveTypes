@@ -9,7 +9,7 @@ namespace SW.PrimitiveTypes
         /// <summary>
         /// Last modifier user for this entity.
         /// </summary>
-        string ModifiedBy { get; set; }
+        string ModifiedBy { get; }
     }
 
 
