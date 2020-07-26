@@ -15,6 +15,16 @@ namespace SW.PrimitiveTypes
             return requestContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         }
 
+        public static string GetEmail(this RequestContext requestContext)
+        {
+            return requestContext.User.FindFirst(ClaimTypes.Email)?.Value;
+        }
+
+        public static string GetMobilePhone(this RequestContext requestContext)
+        {
+            return requestContext.User.FindFirst(ClaimTypes.MobilePhone)?.Value;
+        }
+
         public static int? GetTenantId(this RequestContext requestContext)
         {
             if (int.TryParse(requestContext.User.FindFirst("TenantId")?.Value, out var tenantId))
