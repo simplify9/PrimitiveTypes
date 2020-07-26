@@ -18,20 +18,26 @@ namespace SW.PrimitiveTypes
         //    CorrelationId = correlationId;
         //}
 
-        public void Set(ClaimsPrincipal user, IReadOnlyCollection<RequestValue> values, string correlationId)
+        public void SetLocale(string locale)
         {
-            if (IsValid) throw new SWException("Request context already set.");
+            Locale = locale;
+        }
+
+        public void SetUser(ClaimsPrincipal user, IReadOnlyCollection<RequestValue> values, string correlationId)
+        {
+            if (IsUserValid) throw new SWException("Request context already set.");
 
             User = user;
             Values = values;
             CorrelationId = correlationId;
 
-            IsValid = true;
+            IsUserValid = true;
         }
 
         public ClaimsPrincipal User { get; private set; }
         public IReadOnlyCollection<RequestValue> Values { get; private set; }
         public string CorrelationId { get; private set; }
-        public bool IsValid { get; private set; }
+        public bool IsUserValid { get; private set; }
+        public string Locale { get; private set; }
     }
 }
