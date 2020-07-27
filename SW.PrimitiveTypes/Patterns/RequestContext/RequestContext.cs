@@ -7,31 +7,52 @@ namespace SW.PrimitiveTypes
 {
     public class RequestContext
     {
+        private HashSet<RequestValue> values;
+
         public RequestContext()
         {
+            values = new HashSet<RequestValue>();
         }
 
-        //public RequestContext(ClaimsPrincipal user, IReadOnlyCollection<RequestValue> values, string correlationId)
-        //{
-        //    User = user;
-        //    Values = values;
-        //    CorrelationId = correlationId;
-        //}
+        public void SetLocale(string locale)
+        {
+            Locale = locale;
+        }
 
-        public void Set(ClaimsPrincipal user, IReadOnlyCollection<RequestValue> values, string correlationId)
+        public void SetVersion(string version)
+        {
+            Version = version;
+        }
+
+        public bool AddValue(RequestValue requestValue)
+        {
+            return values.Add(requestValue);
+        }
+
+        public void Set(ClaimsPrincipal user, IEnumerable<RequestValue> values = null, string correlationId = null)
         {
             if (IsValid) throw new SWException("Request context already set.");
 
             User = user;
-            Values = values;
-            CorrelationId = correlationId;
+            if (values != null) this.values = new HashSet<RequestValue>(values);
+            if (correlationId != null) CorrelationId = correlationId;
 
             IsValid = true;
         }
 
         public ClaimsPrincipal User { get; private set; }
-        public IReadOnlyCollection<RequestValue> Values { get; private set; }
+
+        public IReadOnlyCollection<RequestValue> Values
+        {
+            get
+            {
+                return values;
+            }
+        }
+
         public string CorrelationId { get; private set; }
         public bool IsValid { get; private set; }
+        public string Version { get; private set; }
+        public string Locale { get; private set; }
     }
 }
