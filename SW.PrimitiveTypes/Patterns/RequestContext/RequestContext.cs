@@ -7,42 +7,51 @@ namespace SW.PrimitiveTypes
 {
     public class RequestContext
     {
+        private HashSet<RequestValue> values;
+
         public RequestContext()
         {
+            values = new HashSet<RequestValue>();
         }
 
         public void SetLocale(string locale)
         {
-            if (Locale != null) throw new SWException("Locale already set");
             Locale = locale;
         }
 
         public void SetVersion(string version)
         {
-            if (Version != null) throw new SWException("Version already set");
             Version = version;
         }
 
-        public void AddRequestValue(params RequestValue[] values)
+        public bool AddValue(RequestValue requestValue)
         {
-            foreach(var val in values) Values.Add(val);
+            return values.Add(requestValue);
         }
 
-        public void SetUser(ClaimsPrincipal user, ICollection<RequestValue> values, string correlationId)
+        public void Set(ClaimsPrincipal user, IEnumerable<RequestValue> values = null, string correlationId = null)
         {
-            if (IsUserValid) throw new SWException("Request context already set.");
+            if (IsValid) throw new SWException("Request context already set.");
 
             User = user;
-            Values = values;
-            CorrelationId = correlationId;
+            if (values != null) this.values = new HashSet<RequestValue>(values);
+            if (correlationId != null) CorrelationId = correlationId;
 
-            IsUserValid = true;
+            IsValid = true;
         }
 
         public ClaimsPrincipal User { get; private set; }
-        public ICollection<RequestValue> Values { get; private set; }
+
+        public IReadOnlyCollection<RequestValue> Values
+        {
+            get
+            {
+                return values;
+            }
+        }
+
         public string CorrelationId { get; private set; }
-        public bool IsUserValid { get; private set; }
+        public bool IsValid { get; private set; }
         public string Version { get; private set; }
         public string Locale { get; private set; }
     }

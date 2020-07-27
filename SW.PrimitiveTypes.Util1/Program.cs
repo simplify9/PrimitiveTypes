@@ -10,6 +10,10 @@ namespace SW.PrimitiveTypes.Util1
         static void Main(string[] args)
         {
 
+            int? i = null;
+
+            var i1 = i.Value;
+
             IHandle<BaseDomainEvent> hanlder = (IHandle<BaseDomainEvent>)(new Event1Hanlder());
 
             HashSet<string> hashSet = new HashSet<string>();
