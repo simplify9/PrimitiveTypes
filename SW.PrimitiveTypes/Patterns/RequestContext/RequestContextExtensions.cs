@@ -12,7 +12,7 @@ namespace SW.PrimitiveTypes
 
         public static string GetNameIdentifier(this RequestContext requestContext)
         {
-            return requestContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            return requestContext.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         }
 
         public static string GetEmail(this RequestContext requestContext)
@@ -27,14 +27,14 @@ namespace SW.PrimitiveTypes
 
         public static int? GetTenantId(this RequestContext requestContext)
         {
-            if (int.TryParse(requestContext.User.FindFirst("TenantId")?.Value, out var tenantId))
+            if (int.TryParse(requestContext.User?.FindFirst("TenantId")?.Value, out var tenantId))
                 return tenantId;
             return null;
         }
 
         public static string GetEntity(this RequestContext requestContext)
         {
-            return requestContext.User.FindFirst("Entity")?.Value;
+            return requestContext.User?.FindFirst("Entity")?.Value;
         }
 
         public static IEnumerable<string> GetAllowedEntities(this RequestContext requestContext)
