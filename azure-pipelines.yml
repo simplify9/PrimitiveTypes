@@ -1,4 +1,4 @@
-name: $(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
+name: $(major).$(minor).$(revision)
 
 trigger:
 - master
@@ -7,6 +7,9 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
+  major: 2
+  minor: 0
+  revision: $counter[(format('{0}.{1}', variables['major'], variables['minor']), 0)]
   buildConfiguration: 'Release'
 
 steps:
