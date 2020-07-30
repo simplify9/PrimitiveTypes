@@ -38,8 +38,7 @@ steps:
     command: 'pack'
     packagesToPack: 'SW.PrimitiveTypes/SW.PrimitiveTypes.csproj;'
     nobuild: true
-    versioningScheme: 'byEnvVar'
-    versionEnvVar: 'name'
+    versioningScheme: 'byBuildNumber'
 
 - task: NuGetCommand@2
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
