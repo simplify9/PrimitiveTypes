@@ -1,4 +1,4 @@
-name: $(major).$(minor).$(revision)
+name: $(version)
 
 trigger:
 - master
@@ -9,7 +9,7 @@ pool:
 variables:
   major: 2
   minor: 0
-  revision: $[counter(format('{0}.{1}', variables['major'], variables['minor']), 0)]
+  version: $[format('{0}.{1}.{2}', variables['major'], variables['minor'], counter(format('{0}.{1}', variables['major'], variables['minor']), 0))]
   buildConfiguration: 'Release'
 
 steps:
