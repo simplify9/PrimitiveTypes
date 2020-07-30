@@ -1,4 +1,4 @@
-name: $(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
+name: $(version)
 
 trigger:
 - master
@@ -7,6 +7,9 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
+  major: 2
+  minor: 0
+  version: $[format('{0}.{1}.{2}', variables['major'], variables['minor'], counter(format('{0}.{1}', variables['major'], variables['minor']), 0))]
   buildConfiguration: 'Release'
 
 steps:
@@ -32,10 +35,10 @@ steps:
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   displayName: 'dotnet pack'
   inputs:
-    command: pack
+    command: 'pack'
     packagesToPack: 'SW.PrimitiveTypes/SW.PrimitiveTypes.csproj;'
     nobuild: true
-    versioningScheme: byBuildNumber
+    versioningScheme: 'byBuildNumber'
 
 - task: NuGetCommand@2
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
