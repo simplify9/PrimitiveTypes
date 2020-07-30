@@ -35,10 +35,11 @@ steps:
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   displayName: 'dotnet pack'
   inputs:
-    command: pack
+    command: 'pack'
     packagesToPack: 'SW.PrimitiveTypes/SW.PrimitiveTypes.csproj;'
     nobuild: true
-    versioningScheme: byBuildNumber
+    versioningScheme: 'byEnvVar'
+    versionEnvVar: 'name'
 
 - task: NuGetCommand@2
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
