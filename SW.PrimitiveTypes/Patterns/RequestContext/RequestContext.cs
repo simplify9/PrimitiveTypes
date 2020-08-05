@@ -38,8 +38,13 @@ namespace SW.PrimitiveTypes
             if (IsValid) throw new SWException("Request context already set.");
 
             User = user;
+
             if (values != null) this.values = new HashSet<RequestValue>(values);
-            if (correlationId != null) CorrelationId = correlationId;
+
+            if (correlationId != null) 
+                CorrelationId = correlationId;
+            else
+                CorrelationId = Guid.NewGuid().ToString("N");
 
             IsValid = true;
         }
