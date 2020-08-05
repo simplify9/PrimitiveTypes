@@ -7,6 +7,10 @@ namespace SW.PrimitiveTypes
 {
     public class RequestContext
     {
+        public const string UserHeaderName = "request-context-user";
+        public const string ValuesHeaderName = "request-context-values";
+        public const string CorrelationIdHeaderName = "request-context-correlation-id";
+
         private HashSet<RequestValue> values;
 
         public RequestContext()
@@ -41,15 +45,7 @@ namespace SW.PrimitiveTypes
         }
 
         public ClaimsPrincipal User { get; private set; }
-
-        public IReadOnlyCollection<RequestValue> Values
-        {
-            get
-            {
-                return values;
-            }
-        }
-
+        public IReadOnlyCollection<RequestValue> Values => values;
         public string CorrelationId { get; private set; }
         public bool IsValid { get; private set; }
         public string Version { get; private set; }
