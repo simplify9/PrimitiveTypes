@@ -7,6 +7,10 @@ namespace SW.PrimitiveTypes
 {
     public class RequestContext
     {
+        public const string UserHeaderName = "request-context-user";
+        public const string ValuesHeaderName = "request-context-values";
+        public const string CorrelationIdHeaderName = "request-context-correlation-id";
+
         private HashSet<RequestValue> values;
 
         public RequestContext()
