@@ -16,6 +16,7 @@ namespace SW.PrimitiveTypes
         public string DatabaseName { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
+        public object Data { get; set; }
         public IDictionary<string, string>  Headers { get; set; }
     }
 }
