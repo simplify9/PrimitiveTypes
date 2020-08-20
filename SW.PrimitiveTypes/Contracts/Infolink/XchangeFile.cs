@@ -6,8 +6,6 @@ namespace SW.PrimitiveTypes
 {
     public class XchangeFile : ValueObject
     {
-
-
         public XchangeFile(string data, string fileName = null)
         {
             Data = data ?? throw new SWException("Invalid file data.");
@@ -20,20 +18,5 @@ namespace SW.PrimitiveTypes
         public string Filename { get; }
         public string Data { get; }
         public string Hash { get; }
-
-        //public XchangeFileDto ToXchangeFileDto()
-        //{
-        //    return new XchangeFileDto
-        //    {
-        //        Data = Data,
-        //        Filename = Filename
-        //    };
-        //}
-
-        //public static XchangeFile FromXchangeFileDto(XchangeFileDto fileDto)
-        //{
-        //    return new XchangeFile(fileDto.Data, fileDto.Filename);
-        //}
-
     }
 }
