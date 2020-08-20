@@ -6,6 +6,11 @@ namespace SW.PrimitiveTypes
 {
     public class ReportySource
     {
+        public ReportySource()
+        {
+            Headers = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        }
+
         public ReportySourceType Type { get; set; }
         public string ServerName { get; set; }
         public string DatabaseName { get; set; }
