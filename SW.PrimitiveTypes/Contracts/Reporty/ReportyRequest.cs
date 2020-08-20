@@ -5,17 +5,17 @@ using System.Text;
 
 namespace SW.PrimitiveTypes
 {
-    public class ExportRequest
+    public class ReportyRequest
     {
-        public ExportRequest()
+        public ReportyRequest()
         {
-            ExportFormat = ExportFormat.Pdf;
+            ExportFormat = ReportyFormat.Pdf;
         }
 
         public CloudFilesOptions CloudFilesOptions { get; set; }
         public string ReportLocation { get; set; }
-        public ReportDataSource DataSource { get; set; }
-        public ExportFormat ExportFormat { get; set; }
+        public ReportySource DataSource { get; set; }
+        public ReportyFormat ExportFormat { get; set; }
         public IDictionary<string, string> Parameters { get; set; }
     }
 }
