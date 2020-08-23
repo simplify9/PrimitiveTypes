@@ -67,6 +67,13 @@ namespace SW.PrimitiveTypes
         /// <returns></returns>
         Task<IReadOnlyDictionary<string, string>> GetMetadataAsync(string key);
 
+        /// <summary>
+        /// Deletes File.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns>True if file is successfully deleted, false if not successfully deleted</returns>
+        Task<bool> DeleteAsync(string key);
+
 
 
     }
