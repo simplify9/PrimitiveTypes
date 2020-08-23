@@ -4,10 +4,11 @@ using System.Text;
 
 namespace SW.PrimitiveTypes
 {
-    public enum DataSourceType
+    public enum ReportyFormat
     {
-        MsSql = 1,
-        MySql = 2,
-        SQLite = 3
+        Pdf = 1,
+        Excel = 2,
+
+
     }
 }

@@ -4,11 +4,11 @@ using System.Text;
 
 namespace SW.PrimitiveTypes
 {
-    public enum ExportFormat
+    public enum ReportySourceType
     {
-        Pdf = 1,
-        Excel = 2,
-
-
+        MsSql = 1,
+        MySql = 2,
+        SQLite = 3,
+        Json = 4
     }
 }
