@@ -10,6 +10,6 @@ namespace SW.PrimitiveTypes
     {
         Task<ApiResult<SearchyResponse<TModel>>> Search<TModel>(string url);
         Task<ApiResult<IDictionary<string, string>>> Search(string url);
-        Task<ApiResult<string>> Lookup(string url);
+        Task<ApiResult<string>> LookupValue(string url);
     }
 }
