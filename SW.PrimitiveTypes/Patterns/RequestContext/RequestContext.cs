@@ -36,6 +36,7 @@ namespace SW.PrimitiveTypes
         public void Set(ClaimsPrincipal user, IEnumerable<RequestValue> values = null, string correlationId = null)
         {
             if (IsValid) throw new SWException("Request context already set.");
+            if (user == null || !user.Identity.IsAuthenticated) return;
 
             User = user;
 
