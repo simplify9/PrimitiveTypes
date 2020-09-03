@@ -47,7 +47,7 @@ namespace SW.PrimitiveTypes
                     break;
                 case DimensionUnit.M:
                     weightUnit = WeightUnit.kg;
-                    factor = 0.5m;
+                    factor = 0.005m;
                     break;
                 case DimensionUnit.@in:
                     weightUnit = WeightUnit.lb;                    
