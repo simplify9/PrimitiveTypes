@@ -89,11 +89,11 @@ namespace SW.PrimitiveTypes.UnitTests
         [TestMethod]
         public void VolumetricWeightCalculation()
         {
-            var dimInM = new Dimensions(5, 5, 5, DimensionUnit.M);
+            var dimInM = new Dimensions(0.1m, 0.1m, 0.05m, DimensionUnit.M);
             var volumetricWeight = dimInM.GetVolumetricWeight();
 
             Assert.AreEqual(volumetricWeight.Unit, WeightUnit.kg);
-            Assert.AreEqual(volumetricWeight.Value, 250m);
+            Assert.AreEqual(volumetricWeight.Value, 0.1m);
 
 
             var dimInCm = new Dimensions(10, 10, 5, DimensionUnit.cm);
