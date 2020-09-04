@@ -9,8 +9,8 @@ namespace SW.PrimitiveTypes
     {
          Task Initialize();
          Task Finalize();
-         Task<object> ListFiles();
-         Task<object> GetFile(string fileId);
+         Task<IEnumerable<string>> ListFiles();
+         Task<XchangeFile> GetFile(string fileId);
          Task DeleteFile(string fileId);
     }
 }
