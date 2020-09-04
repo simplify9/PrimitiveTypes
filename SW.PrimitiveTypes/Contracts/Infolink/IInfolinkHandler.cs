@@ -7,6 +7,6 @@ namespace SW.PrimitiveTypes
 {
     public interface IInfolinkHandler
     {
-        Task<object> Handle(XchangeFile xchangeFile);
+        Task<XchangeFile> Handle(XchangeFile xchangeFile);
     }
 }
