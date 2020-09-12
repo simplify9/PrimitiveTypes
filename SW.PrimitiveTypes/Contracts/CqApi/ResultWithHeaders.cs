@@ -3,13 +3,17 @@ using System.Collections.Generic;
 
 namespace SW.PrimitiveTypes
 {
-    public interface IResultWithHeaders { }
+    public interface IResultWithHeaders 
+    {
+        IEnumerable<KeyValuePair<string, string>> Headers { get; }
+        object Result { get; }
+    }
 
     public class ResultWithHeaders<TResult> : IResultWithHeaders
     {
         public ResultWithHeaders(TResult result)
         {
-            Result = result;
+            _result = result;
             _headers = new List<KeyValuePair<string, string>>(); 
         }
 
@@ -28,7 +32,8 @@ namespace SW.PrimitiveTypes
             _headers.Add(new KeyValuePair<string, string>(name, value));
         }
 
-        public TResult Result { get; private set;}
+        TResult _result;
+        public object Result => _result;
 
 
         ICollection<KeyValuePair<string, string>> _headers;
