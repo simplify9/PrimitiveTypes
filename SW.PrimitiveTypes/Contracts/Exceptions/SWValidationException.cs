@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace SW.PrimitiveTypes
 {
@@ -10,6 +8,14 @@ namespace SW.PrimitiveTypes
         public SWValidationException(IEnumerable<KeyValuePair<string, string>> validations) : 
             base(string.Join(";", validations.Select(i => $"{i.Key}: {i.Value}")))
         {
+            Validations = validations;
+        }
+
+        public SWValidationException(string key, string value) :
+            base($"{key}: {value}")
+        {
+            var validations = new List<KeyValuePair<string, string>>();
+            validations.Add(new KeyValuePair<string, string>(key, value));
             Validations = validations;
         }
 
