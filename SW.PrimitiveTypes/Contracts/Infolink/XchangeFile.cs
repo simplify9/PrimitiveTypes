@@ -6,10 +6,12 @@ namespace SW.PrimitiveTypes
 {
     public class XchangeFile : ValueObject
     {
-        public XchangeFile(string data, string fileName = null)
+        public XchangeFile(string data, string fileName = null, bool badData = false)
         {
             Data = data ?? throw new SWException("Invalid file data.");
             Filename = fileName;
+            BadData = badData;
+
             using (SHA1Managed sha1 = new SHA1Managed())
                 Hash = BitConverter.ToString(sha1.ComputeHash(Encoding.UTF8.GetBytes(Data))).Replace("-", "").ToLower();
 
@@ -18,5 +20,6 @@ namespace SW.PrimitiveTypes
         public string Filename { get; }
         public string Data { get; }
         public string Hash { get; }
+        public bool BadData { get; }
     }
 }
