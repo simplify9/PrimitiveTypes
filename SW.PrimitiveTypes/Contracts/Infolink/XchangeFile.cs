@@ -8,10 +8,10 @@ namespace SW.PrimitiveTypes
     public class XchangeFile 
     {
 
-        public XchangeFile(string data, string fileName, string contentType, bool badData) : this(data, fileName, badData)
-        {
-            ContentType = contentType;
-        }
+        //public XchangeFile(string data, string fileName, string contentType, bool badData) : this(data, fileName, badData)
+        //{
+        //    ContentType = contentType;
+        //}
 
         public XchangeFile(string data, string fileName = null, bool badData = false)
         {
@@ -28,7 +28,7 @@ namespace SW.PrimitiveTypes
         public string Data { get; }
         public string Hash { get; }
         public bool BadData { get; }
-        public string ContentType { get; }
+        public string ContentType { get; set; }
 
         public override bool Equals(object obj)
         {
