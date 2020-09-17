@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Text;
 
-namespace SW.PrimitiveTypes
-{
-    public interface IUnderProcessing
-    {
-        string Uri { get;  }
-    }
-}
+//namespace SW.PrimitiveTypes
+//{
+//    public interface IUnderProcessing
+//    {
+//        string Uri { get;  }
+//    }
+//}
