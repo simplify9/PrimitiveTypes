@@ -1,11 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 
 namespace SW.PrimitiveTypes
 {
-    public class XchangeFile : ValueObject
+    public class XchangeFile 
     {
+
+        public XchangeFile(string data, string contentType, string fileName = null, bool badData = false) : this(data, fileName, badData)
+        {
+            ContentType = contentType;
+        }
+
         public XchangeFile(string data, string fileName = null, bool badData = false)
         {
             Data = data ?? throw new SWException("Invalid file data.");
@@ -21,5 +28,21 @@ namespace SW.PrimitiveTypes
         public string Data { get; }
         public string Hash { get; }
         public bool BadData { get; }
+        public string ContentType { get; }
+
+        public override bool Equals(object obj)
+        {
+            return obj is XchangeFile file &&
+                   Filename == file.Filename &&
+                   Data == file.Data;
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = -1744428883;
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Filename);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Data);
+            return hashCode;
+        }
     }
 }

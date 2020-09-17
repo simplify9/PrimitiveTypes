@@ -3,15 +3,15 @@ using System.Collections.Generic;
 
 namespace SW.PrimitiveTypes
 {
-    public interface IResultWithHeaders 
-    {
-        IEnumerable<KeyValuePair<string, string>> Headers { get; }
-        object Result { get; }
-    }
+    //public interface IResultWithHeaders 
+    //{
+    //    IEnumerable<KeyValuePair<string, string>> Headers { get; }
+    //    object Result { get; }
+    //}
 
-    public class ResultWithHeaders<TResult> : IResultWithHeaders
+    public class CqApiResult<TResult> : ICqApiResult
     {
-        public ResultWithHeaders(TResult result)
+        public CqApiResult(TResult result)
         {
             _result = result;
             _headers = new List<KeyValuePair<string, string>>(); 
@@ -38,5 +38,9 @@ namespace SW.PrimitiveTypes
 
         ICollection<KeyValuePair<string, string>> _headers;
         public IEnumerable<KeyValuePair<string, string>> Headers => _headers;
+
+        public CqApiResultStatus Status { get; set; }
+
+        public string ContentType { get; set; }
     }
 }
