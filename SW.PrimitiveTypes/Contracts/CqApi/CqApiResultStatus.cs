@@ -8,5 +8,6 @@ namespace SW.PrimitiveTypes
     {
         Ok = 0,
         UnderProcessing = 1,
+        Error = 100,
     }
 }
