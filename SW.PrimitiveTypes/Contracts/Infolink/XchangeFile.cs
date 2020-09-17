@@ -8,7 +8,7 @@ namespace SW.PrimitiveTypes
     public class XchangeFile 
     {
 
-        public XchangeFile(string data, string contentType, string fileName = null, bool badData = false) : this(data, fileName, badData)
+        public XchangeFile(string data, string fileName, string contentType, bool badData) : this(data, fileName, badData)
         {
             ContentType = contentType;
         }
