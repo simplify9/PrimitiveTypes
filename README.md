@@ -26,6 +26,9 @@ The [`Searchy`](https://github.com/simplify9/Searchy) segment revolves around in
 The [`Cloudfiles`](https://github.com/simplify9/CloudFiles) segment has interfaces to describe services that lift blobs/streams on the cloud.
 `SimplyWorks.CloudFiles` is an implementation of this interfaces.
 
+## Conversion Methods
+ConvertValueToType**: extends `object` and takes in a `Type` as a parameter and goes through the process of different methods of conversion to get the optimal result. Note that is optimized to avoid redundant or unnecessary conversions.
+
 
 ## Getting support 👷
 If you encounter any bugs, don't hesitate to submit an [issue](https://github.com/simplify9/HttpExtensions/issues). We'll get back to you promptly!
