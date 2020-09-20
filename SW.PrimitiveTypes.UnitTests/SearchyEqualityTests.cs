@@ -18,15 +18,69 @@ namespace SW.PrimitiveTypes.UnitTests
         }
 
         [TestMethod]
+        public void TestSearchyRequestEquality2()
+        {
+            int? x = 5;
+            var sr1 = new SearchyRequest("Id", SearchyRule.EqualsTo, x);
+            var sr2 = new SearchyRequest("Id", SearchyRule.EqualsTo, 5.0);
+            var result = sr1 == sr2;
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void TestSearchyRequestEquality3()
+        {
+            var sr1 = new SearchyRequest
+            {
+                Conditions = new List<SearchyCondition>
+                {
+                    new SearchyCondition
+                    {
+                        Filters = new List<SearchyFilter>
+                        {
+                            new SearchyFilter
+                            {
+                                Field = "Id",
+                                Rule = SearchyRule.EqualsTo ,
+                                ValueDecimal = 5
+                            }
+                        }
+                    }
+                }
+            };
+            var sr2 = new SearchyRequest
+            {
+                Conditions = new List<SearchyCondition>
+                {
+                    new SearchyCondition
+                    {
+                        Filters = new List<SearchyFilter>
+                        {
+                            new SearchyFilter
+                            {
+                                Field = "Id",
+                                Rule = SearchyRule.EqualsTo ,
+                                ValueDecimal = 5
+                            }
+                        }
+                    }
+                }
+            };
+
+            var result = sr1 == sr2;
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
         public void TestSearchyFilterEquality()
         {
             var sf1 = new SearchyFilter
             {
                 Field = "Id",
-                ValueStringArray = new [] { "test", "test2" }
+                ValueStringArray = new[] { "test", "test2" }
             };
 
-            var sf2 = new SearchyFilter 
+            var sf2 = new SearchyFilter
             {
                 Field = "ID",
                 ValueStringArray = new[] { "test", "test2" }
