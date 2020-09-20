@@ -47,8 +47,7 @@ namespace SW.PrimitiveTypes
         }
 
         public SearchyRequest(string field, SearchyRule rule, object value) :
-            this(new SearchyCondition(new SearchyFilter(field, rule, value)))
-        { }
+            this(new SearchyCondition(new SearchyFilter(field, rule, value))) { }
 
         public ICollection<SearchyCondition> Conditions { get; set; }
         public ICollection<SearchySort> Sorts { get; set; }
