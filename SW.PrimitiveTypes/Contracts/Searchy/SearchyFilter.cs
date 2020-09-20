@@ -6,7 +6,7 @@ namespace SW.PrimitiveTypes
 {
     public class SearchyFilter : ISearchyFilterTyped, ICloneable, IEquatable<SearchyFilter>
     {
-        object value;
+        //object value;
 
         public string Field { get; set; }
 
@@ -22,11 +22,54 @@ namespace SW.PrimitiveTypes
                 if (!(ValueDecimal is null)) return ValueDecimal;
                 if (!(ValueDecimalArray is null)) return ValueDecimalArray;
 
-                return value;
+                return null;
             }
             set
             {
-                this.value = value;
+                if (value == null)
+                {
+                    ValueString = null;
+                    ValueStringArray = null;
+                    ValueDecimal = null;
+                    ValueDecimalArray = null;
+                    ValueDateTime = null;
+                    ValueDateTimeArray = null;
+                }
+                else if (value.GetType() == typeof(DateTime))
+                    ValueDateTime = (DateTime?)value;
+                    
+                else if (value.GetType() == typeof(DateTime[]))
+                    ValueDateTimeArray = (DateTime[])value;
+
+                else if (value.GetType() == typeof(decimal)) 
+                    ValueDecimal = (decimal?)value;
+
+                else if (value.GetType() == typeof(double)) 
+                    ValueDecimal = (decimal?)value.ConvertValueToType(typeof(decimal?));
+
+                else if (value.GetType() == typeof(long)) 
+                    ValueDecimal = (decimal?)value.ConvertValueToType(typeof(decimal?));
+
+                else if (value.GetType() == typeof(int)) 
+                    ValueDecimal = (decimal?)value.ConvertValueToType(typeof(decimal?));
+
+                else if (value.GetType() == typeof(short)) 
+                    ValueDecimal = (decimal?)value.ConvertValueToType(typeof(decimal?));
+
+                else if (value.GetType() == typeof(byte)) 
+                    ValueDecimal = (decimal?)value.ConvertValueToType(typeof(decimal?));
+
+                else if (value.GetType() == typeof(bool)) 
+                    ValueDecimal = (decimal?)value.ConvertValueToType(typeof(decimal?));
+
+                else if(value.GetType() == typeof(decimal[])) 
+                    ValueDecimalArray = (decimal[])value;
+
+                else if(value.GetType() == typeof(string)) 
+                    ValueString = (string)value;
+
+                else if(value.GetType() == typeof(string[])) 
+                    ValueStringArray = (string[])value;
             }
         }
         public SearchyRule Rule { get; set; }
@@ -120,12 +163,12 @@ namespace SW.PrimitiveTypes
                 Field = Field,
                 Rule = Rule,
                 Value = Value,
-                ValueString = ValueString,
-                ValueStringArray = ValueStringArray,
-                ValueDecimal = ValueDecimal,
-                ValueDecimalArray = ValueDecimalArray,
-                ValueDateTime = ValueDateTime,
-                ValueDateTimeArray = ValueDateTimeArray
+                //ValueString = ValueString,
+                //ValueStringArray = ValueStringArray,
+                //ValueDecimal = ValueDecimal,
+                //ValueDecimalArray = ValueDecimalArray,
+                //ValueDateTime = ValueDateTime,
+                //ValueDateTimeArray = ValueDateTimeArray
             };
         }
 
@@ -136,22 +179,22 @@ namespace SW.PrimitiveTypes
 
         public bool Equals(SearchyFilter other)
         {
-            if (value == null)
-                return other != null &&
-                       StringComparer.OrdinalIgnoreCase.Equals(Field, other.Field) &&
-                       Rule == other.Rule &&
-                       ValueString == other.ValueString &&
-                       ValueDecimal == other.ValueDecimal &&
-                       ValueDateTime == other.ValueDateTime &&
-                       CollectionComparer<string>.Compare(ValueStringArray, other.ValueStringArray) &&
-                       CollectionComparer<decimal>.Compare(ValueDecimalArray, other.ValueDecimalArray) &&
-                       CollectionComparer<DateTime>.Compare(ValueDateTimeArray, other.ValueDateTimeArray);
-            
-            else
-                return other != null &&
-                       StringComparer.OrdinalIgnoreCase.Equals(Field, other.Field) &&
-                       Rule == other.Rule &&
-                       value == other.value; 
+            //if (value == null)
+            return other != null &&
+                   StringComparer.OrdinalIgnoreCase.Equals(Field, other.Field) &&
+                   Rule == other.Rule &&
+                   ValueString == other.ValueString &&
+                   ValueDecimal == other.ValueDecimal &&
+                   ValueDateTime == other.ValueDateTime &&
+                   CollectionComparer<string>.Compare(ValueStringArray, other.ValueStringArray) &&
+                   CollectionComparer<decimal>.Compare(ValueDecimalArray, other.ValueDecimalArray) &&
+                   CollectionComparer<DateTime>.Compare(ValueDateTimeArray, other.ValueDateTimeArray);
+
+            //else
+            //    return other != null &&
+            //           StringComparer.OrdinalIgnoreCase.Equals(Field, other.Field) &&
+            //           Rule == other.Rule &&
+            //           value == other.value;
         }
 
         public override int GetHashCode()
