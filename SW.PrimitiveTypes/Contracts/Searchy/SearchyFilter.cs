@@ -37,38 +37,38 @@ namespace SW.PrimitiveTypes
                 }
                 else if (value.GetType() == typeof(DateTime))
                     ValueDateTime = (DateTime?)value;
-                    
+
                 else if (value.GetType() == typeof(DateTime[]))
                     ValueDateTimeArray = (DateTime[])value;
 
-                else if (value.GetType() == typeof(decimal)) 
+                else if (value.GetType() == typeof(decimal))
                     ValueDecimal = (decimal?)value;
 
-                else if (value.GetType() == typeof(double)) 
+                else if (value.GetType() == typeof(double))
                     ValueDecimal = (decimal?)value.ConvertValueToType(typeof(decimal?));
 
-                else if (value.GetType() == typeof(long)) 
+                else if (value.GetType() == typeof(long))
                     ValueDecimal = (decimal?)value.ConvertValueToType(typeof(decimal?));
 
-                else if (value.GetType() == typeof(int)) 
+                else if (value.GetType() == typeof(int))
                     ValueDecimal = (decimal?)value.ConvertValueToType(typeof(decimal?));
 
-                else if (value.GetType() == typeof(short)) 
+                else if (value.GetType() == typeof(short))
                     ValueDecimal = (decimal?)value.ConvertValueToType(typeof(decimal?));
 
-                else if (value.GetType() == typeof(byte)) 
+                else if (value.GetType() == typeof(byte))
                     ValueDecimal = (decimal?)value.ConvertValueToType(typeof(decimal?));
 
-                else if (value.GetType() == typeof(bool)) 
+                else if (value.GetType() == typeof(bool))
                     ValueDecimal = (decimal?)value.ConvertValueToType(typeof(decimal?));
 
-                else if(value.GetType() == typeof(decimal[])) 
+                else if (value.GetType() == typeof(decimal[]))
                     ValueDecimalArray = (decimal[])value;
 
-                else if(value.GetType() == typeof(string)) 
+                else if (value.GetType() == typeof(string))
                     ValueString = (string)value;
 
-                else if(value.GetType() == typeof(string[])) 
+                else if (value.GetType() == typeof(string[]))
                     ValueStringArray = (string[])value;
             }
         }
@@ -96,25 +96,14 @@ namespace SW.PrimitiveTypes
                     Rule = (SearchyRule)int.Parse(arr[1]);
 
                     //handle arrays
-
                     if (arr[2].StartsWith(SearchyDataType.Text + "|"))
-                    {
-                        Value = arr[2].Split(new char[] { '|' }).Skip(1).Select(value => decimal.Parse(value)).ToArray();
-                    }
-
+                        Value = arr[2].Split(new char[] { '|' }).Skip(1).ToArray();
                     else if (arr[2].StartsWith(SearchyDataType.Number + "|"))
-                    {
                         Value = arr[2].Split(new char[] { '|' }).Skip(1).Select(value => decimal.Parse(value)).ToArray();
-                    }
-
                     else if (arr[2].StartsWith(SearchyDataType.Date + "|"))
-                    {
                         Value = arr[2].Split(new char[] { '|' }).Skip(1).Select(value => DateTime.Parse(value)).ToArray();
-                    }
-
                     else
-
-                        Value = arr[2];
+                        Value = arr[2].Length == 0 ? null : arr[2];
                 }
             }
 
