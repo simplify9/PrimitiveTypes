@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SW.PrimitiveTypes
 {
-    public class SearchyFilter : ISearchyFilterTyped
+    public class SearchyFilter : ISearchyFilterTyped, ICloneable, IEquatable<SearchyFilter>
     {
         object value;
 
@@ -110,6 +111,71 @@ namespace SW.PrimitiveTypes
             else if (Value != null) valueString = Value.ToString();
 
             return $"filter={Field}:{(int)Rule}:{((valueString == null) ? null : Uri.EscapeDataString(valueString))}";
+        }
+
+        public object Clone()
+        {
+            return new SearchyFilter
+            {
+                Field = Field,
+                Rule = Rule,
+                Value = Value,
+                ValueString = ValueString,
+                ValueStringArray = ValueStringArray,
+                ValueDecimal = ValueDecimal,
+                ValueDecimalArray = ValueDecimalArray,
+                ValueDateTime = ValueDateTime,
+                ValueDateTimeArray = ValueDateTimeArray
+            };
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as SearchyFilter);
+        }
+
+        public bool Equals(SearchyFilter other)
+        {
+            if (value == null)
+                return other != null &&
+                       StringComparer.OrdinalIgnoreCase.Equals(Field, other.Field) &&
+                       Rule == other.Rule &&
+                       ValueString == other.ValueString &&
+                       ValueDecimal == other.ValueDecimal &&
+                       ValueDateTime == other.ValueDateTime &&
+                       CollectionComparer<string>.Compare(ValueStringArray, other.ValueStringArray) &&
+                       CollectionComparer<decimal>.Compare(ValueDecimalArray, other.ValueDecimalArray) &&
+                       CollectionComparer<DateTime>.Compare(ValueDateTimeArray, other.ValueDateTimeArray);
+            
+            else
+                return other != null &&
+                       StringComparer.OrdinalIgnoreCase.Equals(Field, other.Field) &&
+                       Rule == other.Rule &&
+                       value == other.value; 
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = -141615765;
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Field);
+            hashCode = hashCode * -1521134295 + Rule.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(ValueString);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string[]>.Default.GetHashCode(ValueStringArray);
+            hashCode = hashCode * -1521134295 + ValueDecimal.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<decimal[]>.Default.GetHashCode(ValueDecimalArray);
+            hashCode = hashCode * -1521134295 + ValueDateTime.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<DateTime[]>.Default.GetHashCode(ValueDateTimeArray);
+            return hashCode;
+        }
+
+        public static bool operator ==(SearchyFilter left, SearchyFilter right)
+        {
+            return EqualityComparer<SearchyFilter>.Default.Equals(left, right);
+        }
+
+        public static bool operator !=(SearchyFilter left, SearchyFilter right)
+        {
+            return !(left == right);
         }
     }
 }
