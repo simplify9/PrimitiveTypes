@@ -60,7 +60,7 @@ namespace SW.PrimitiveTypes.UnitTests
                             {
                                 Field = "Id",
                                 Rule = SearchyRule.EqualsTo ,
-                                ValueDecimal = 6
+                                ValueDecimal = 5
                             }
                         }
                     }
