@@ -5,13 +5,12 @@ using System.Text;
 
 namespace SW.PrimitiveTypes
 {
-    public class SearchyRequest
+    public class SearchyRequest : ICloneable, IEquatable<SearchyRequest>
     {
         public SearchyRequest()
         {
             Conditions = new List<SearchyCondition>();
             Sorts = new List<SearchySort>();
-            //PageSize = 1000;
         }
 
         public SearchyRequest(string[] filters, string[] sorts = null, int pageSize = 0, int pageIndex = 0, bool countRows = false) :
@@ -82,6 +81,54 @@ namespace SW.PrimitiveTypes
 
             return result;
 
+        }
+
+        public object Clone()
+        {
+            return new SearchyRequest
+            {
+                PageIndex = PageIndex,
+                PageSize = PageSize,
+                CountRows = CountRows,
+                Conditions = Conditions.Select(i => (SearchyCondition)i.Clone()).ToList(),
+                Sorts = Sorts.Select(i => (SearchySort)i.Clone()).ToList()
+            };
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as SearchyRequest);
+        }
+
+        public bool Equals(SearchyRequest other)
+        {
+            return other != null &&
+                   CollectionComparer<SearchyCondition>.Compare(Conditions, other.Conditions) &&
+                   CollectionComparer<SearchySort>.Compare(Sorts, other.Sorts) &&
+                   PageSize == other.PageSize &&
+                   PageIndex == other.PageIndex &&
+                   CountRows == other.CountRows;
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = -1859068553;
+            hashCode = hashCode * -1521134295 + EqualityComparer<ICollection<SearchyCondition>>.Default.GetHashCode(Conditions);
+            hashCode = hashCode * -1521134295 + EqualityComparer<ICollection<SearchySort>>.Default.GetHashCode(Sorts);
+            hashCode = hashCode * -1521134295 + PageSize.GetHashCode();
+            hashCode = hashCode * -1521134295 + PageIndex.GetHashCode();
+            hashCode = hashCode * -1521134295 + CountRows.GetHashCode();
+            return hashCode;
+        }
+
+        public static bool operator ==(SearchyRequest left, SearchyRequest right)
+        {
+            return EqualityComparer<SearchyRequest>.Default.Equals(left, right);
+        }
+
+        public static bool operator !=(SearchyRequest left, SearchyRequest right)
+        {
+            return !(left == right);
         }
     }
 }
