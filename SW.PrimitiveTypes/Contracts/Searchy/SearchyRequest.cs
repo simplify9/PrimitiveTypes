@@ -12,30 +12,55 @@ namespace SW.PrimitiveTypes
             Sorts = new List<SearchySort>();
         }
 
+        public SearchyRequest(string queryString) : this()
+        {
+            var queryDictionary = QueryStringParser.Parse(queryString);
+
+            if (queryDictionary.TryGetValue("filter", out var filters))
+            {
+                var cond = new SearchyCondition();
+                Conditions.Add(cond);
+                foreach (var str in filters)
+                    cond.Filters.Add(new SearchyFilter(str));
+            }
+
+            if (queryDictionary.TryGetValue("sort", out var sorts))
+                foreach (var str in sorts)
+                    Sorts.Add(new SearchySort(str));
+
+            if (queryDictionary.TryGetValue("size", out var sizes) && 
+                sizes.Any() && 
+                int.TryParse(sizes.First(), out var pageSize))
+                PageSize = pageSize;
+
+            if (queryDictionary.TryGetValue("page", out var pages) && 
+                pages.Any() && 
+                int.TryParse(pages.First(), out var pageIndex))
+                PageIndex = pageIndex;
+
+            if (queryDictionary.TryGetValue("count", out var counts) &&
+                counts.Any() && 
+                bool.TryParse(counts.First(), out var countRows))
+                CountRows = countRows;
+        }
+
         public SearchyRequest(string[] filters, string[] sorts = null, int pageSize = 0, int pageIndex = 0, bool countRows = false) : this()
         {
-
             if (filters != null)
             {
                 var cond = new SearchyCondition();
-
+                Conditions.Add(cond);
                 foreach (var str in filters)
                     cond.Filters.Add(new SearchyFilter(str));
-
-                Conditions.Add(cond);
             }
 
             if (sorts != null)
-            {
                 foreach (var str in sorts)
-                    Sorts.Add(new SearchySort(str));  
-            }
-
+                    Sorts.Add(new SearchySort(str));
 
             PageSize = pageSize;
             PageIndex = pageIndex;
             CountRows = countRows;
-
         }
 
         public SearchyRequest(SearchyCondition condition) : this()
@@ -44,7 +69,7 @@ namespace SW.PrimitiveTypes
         }
 
         public SearchyRequest(string field, SearchyRule rule, object value) :
-            this(new SearchyCondition(field, rule, value)) 
+            this(new SearchyCondition(field, rule, value))
         {
         }
 
@@ -62,11 +87,11 @@ namespace SW.PrimitiveTypes
             if (Conditions.Count >= 1)
             {
                 var filters = Conditions.First().Filters.Select(f => f.ToString());
-                filtersStr = String.Join("&", filters);
+                filtersStr = string.Join("&", filters);
             }
 
             var sorts = Sorts.Select(s => s.ToString());
-            sortsStr = String.Join("&", sorts);
+            sortsStr = string.Join("&", sorts);
 
             var result = string.Empty;
             if (!string.IsNullOrEmpty(filtersStr)) result = $"{filtersStr}&";

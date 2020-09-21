@@ -83,18 +83,17 @@ namespace SW.PrimitiveTypes
             Rule = rule;
             this.value = value;
         }
-
         public SearchyFilter(ISearchyFilter filter) :
             this(filter.Field, filter.Rule, filter.Value)
         { 
         }
-
         public override string ToString()
         {
             string valueSerialized;
 
             if (value == null) 
                 valueSerialized = null;
+
             else if (value is string) 
                 valueSerialized = ValueString;
 
@@ -112,6 +111,7 @@ namespace SW.PrimitiveTypes
             
             else if (value is DateTime[]) 
                 valueSerialized = SearchyDataType.Date + "|" + string.Join("|", ValueDateTimeArray.Select(value => value.ToString("O")));
+            
             else 
                 valueSerialized = value.ToString();
 
@@ -136,47 +136,34 @@ namespace SW.PrimitiveTypes
         public bool Equals(SearchyFilter other)
         {
             if (other == null)
-            {
                 return false;
-            }
+
             else if (value is string[] && other.value is string[])
-            {
-                return other != null &&
-                       StringComparer.OrdinalIgnoreCase.Equals(Field, other.Field) &&
+                return StringComparer.OrdinalIgnoreCase.Equals(Field, other.Field) &&
                        Rule == other.Rule &&
                        CollectionComparer<string>.Compare(ValueStringArray, other.ValueStringArray);
-            }
+
             else if (value is DateTime[] && other.value is DateTime[])
-            {
-                return other != null &&
-                       StringComparer.OrdinalIgnoreCase.Equals(Field, other.Field) &&
+                return StringComparer.OrdinalIgnoreCase.Equals(Field, other.Field) &&
                        Rule == other.Rule &&
                        CollectionComparer<DateTime>.Compare(ValueDateTimeArray, other.ValueDateTimeArray);
-            }
+
             else if (value is decimal[] && other.value is decimal[])
-            {
-                return other != null &&
-                       StringComparer.OrdinalIgnoreCase.Equals(Field, other.Field) &&
+                return StringComparer.OrdinalIgnoreCase.Equals(Field, other.Field) &&
                        Rule == other.Rule &&
                        CollectionComparer<decimal>.Compare(ValueDecimalArray, other.ValueDecimalArray);
-            }
+
             else if (value != null)
-            {
-                return other != null &&
-                       StringComparer.OrdinalIgnoreCase.Equals(Field, other.Field) &&
+                return StringComparer.OrdinalIgnoreCase.Equals(Field, other.Field) &&
                        Rule == other.Rule &&
                        value.Equals(other.value);
-            }
+
             else if (other.value != null)
-            {
                 return false;
-            }
+
             else
-            {
-                return other != null &&
-                       StringComparer.OrdinalIgnoreCase.Equals(Field, other.Field) &&
+                return StringComparer.OrdinalIgnoreCase.Equals(Field, other.Field) &&
                        Rule == other.Rule;
-            }
         }
 
         public override int GetHashCode()
