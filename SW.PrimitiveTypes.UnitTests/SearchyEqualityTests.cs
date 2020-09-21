@@ -11,6 +11,12 @@ namespace SW.PrimitiveTypes.UnitTests
         [TestMethod]
         public void TestSearchyRequestEquality()
         {
+            object x = 7.1;
+            object y = 7.1;
+
+            object zz = null;
+            string zzd = (string)zz;
+            var result1 = x.Equals(y);
             var sr1 = new SearchyRequest("Id", SearchyRule.EqualsTo, "s");
             var sr2 = new SearchyRequest("ID", SearchyRule.EqualsTo, "s");
             var result = sr1 == sr2;
@@ -20,8 +26,8 @@ namespace SW.PrimitiveTypes.UnitTests
         [TestMethod]
         public void TestSearchyRequestEquality2()
         {
-            int? x = 5;
-            var sr1 = new SearchyRequest("Id", SearchyRule.EqualsTo, x);
+            //int? x = 5;
+            var sr1 = new SearchyRequest("Id", SearchyRule.EqualsTo, 5.0);
             var sr2 = new SearchyRequest("Id", SearchyRule.EqualsTo, 5.0);
             var result = sr1 == sr2;
             Assert.IsTrue(result);
@@ -72,6 +78,15 @@ namespace SW.PrimitiveTypes.UnitTests
         }
 
         [TestMethod]
+        public void TestSearchyRequestEquality4()
+        {
+            var sr1 = new SearchyRequest("Id", SearchyRule.EqualsTo, new string[] { "ss" });
+            var sr2 = new SearchyRequest("Id", SearchyRule.EqualsTo, new string[] { "ss" });
+            var result = sr1 == sr2;
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
         public void TestSearchyFilterEquality()
         {
             var sf1 = new SearchyFilter
@@ -89,6 +104,24 @@ namespace SW.PrimitiveTypes.UnitTests
             var result = sf1 == sf2;
             Assert.IsTrue(result);
         }
+
+        [TestMethod]
+        public void TestSearchyRequestSerialization()
+        {
+            var sr1 = new SearchyRequest("Id", SearchyRule.EqualsTo, "s");
+
+            //var sr2 = new SearchyRequest("ID", SearchyRule.EqualsTo, "s");
+
+            //var sr2 =  Newtonsoft.Json.JsonConvert.SerializeObject(sr1);
+            //var sr3 = System.Text.Json.JsonSerializer.Serialize(sr1);
+
+            //var result = sr1 == sr2;
+            //Assert.IsTrue(result);
+            var filters = new List<SearchyFilter>();
+            var condition = new SearchyCondition(filters);
+        }
+
+
 
 
     }
