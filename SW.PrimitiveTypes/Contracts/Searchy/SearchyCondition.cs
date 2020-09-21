@@ -15,17 +15,12 @@ namespace SW.PrimitiveTypes
             Filters.Add(new SearchyFilter(field, rule, value));
         }
 
-        public SearchyCondition(ISearchyFilterTyped filter)
+        public SearchyCondition(ISearchyFilter filter)
         {
             Filters = new List<SearchyFilter> { new SearchyFilter(filter) };
         }
 
-        public SearchyCondition(IEnumerable<SearchyFilter> filters)
-        {
-            Filters = filters.ToList();
-        }
-
-        public SearchyCondition(IEnumerable<ISearchyFilterTyped> filters)
+        public SearchyCondition(IEnumerable<ISearchyFilter> filters)
         {
             Filters = filters.Select(f => new SearchyFilter(f)).ToList();
         }

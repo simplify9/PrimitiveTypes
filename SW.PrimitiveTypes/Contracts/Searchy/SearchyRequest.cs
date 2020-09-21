@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace SW.PrimitiveTypes
 {
@@ -13,8 +12,7 @@ namespace SW.PrimitiveTypes
             Sorts = new List<SearchySort>();
         }
 
-        public SearchyRequest(string[] filters, string[] sorts = null, int pageSize = 0, int pageIndex = 0, bool countRows = false) :
-            this()
+        public SearchyRequest(string[] filters, string[] sorts = null, int pageSize = 0, int pageIndex = 0, bool countRows = false) : this()
         {
 
             if (filters != null)
@@ -40,14 +38,15 @@ namespace SW.PrimitiveTypes
 
         }
 
-        public SearchyRequest(SearchyCondition condition) :
-            this()
+        public SearchyRequest(SearchyCondition condition) : this()
         {
             Conditions.Add(condition);
         }
 
         public SearchyRequest(string field, SearchyRule rule, object value) :
-            this(new SearchyCondition(new SearchyFilter(field, rule, value))) { }
+            this(new SearchyCondition(field, rule, value)) 
+        {
+        }
 
         public ICollection<SearchyCondition> Conditions { get; set; }
         public ICollection<SearchySort> Sorts { get; set; }
@@ -79,7 +78,6 @@ namespace SW.PrimitiveTypes
             if (!string.IsNullOrEmpty(result)) result = result.Remove(result.Length - 1);
 
             return result;
-
         }
 
         public object Clone()
