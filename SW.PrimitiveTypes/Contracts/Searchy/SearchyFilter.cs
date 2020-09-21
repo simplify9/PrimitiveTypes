@@ -58,24 +58,23 @@ namespace SW.PrimitiveTypes
 
         public SearchyFilter(string queryString)
         {
-            if (!string.IsNullOrEmpty(queryString)) return;
+            if (string.IsNullOrEmpty(queryString)) return;
 
-            var arr = queryString.Split(new char[] { ':' }, 3);
+            var parsedProperties = queryString.Split(new char[] { ':' }, 3);
+            if (parsedProperties.Length != 3) return;
 
-            if (arr.Length != 3) return;
-
-            Field = arr[0];
-            Rule = (SearchyRule)int.Parse(arr[1]);
+            Field = parsedProperties[0];
+            Rule = (SearchyRule)int.Parse(parsedProperties[1]);
 
             //handle arrays
-            if (arr[2].StartsWith(SearchyDataType.Text + "|"))
-                value = arr[2].Split(new char[] { '|' }).Skip(1).ToArray();
-            else if (arr[2].StartsWith(SearchyDataType.Number + "|"))
-                value = arr[2].Split(new char[] { '|' }).Skip(1).Select(i => decimal.Parse(i)).ToArray();
-            else if (arr[2].StartsWith(SearchyDataType.Date + "|"))
-                value = arr[2].Split(new char[] { '|' }).Skip(1).Select(i => DateTime.Parse(i)).ToArray();
+            if (parsedProperties[2].StartsWith(SearchyDataType.Text + "|"))
+                value = parsedProperties[2].Split(new char[] { '|' }).Skip(1).ToArray();
+            else if (parsedProperties[2].StartsWith(SearchyDataType.Number + "|"))
+                value = parsedProperties[2].Split(new char[] { '|' }).Skip(1).Select(i => decimal.Parse(i)).ToArray();
+            else if (parsedProperties[2].StartsWith(SearchyDataType.Date + "|"))
+                value = parsedProperties[2].Split(new char[] { '|' }).Skip(1).Select(i => DateTime.Parse(i)).ToArray();
             else
-                value = arr[2].Length == 0 ? null : arr[2];
+                value = parsedProperties[2].Length == 0 ? null : parsedProperties[2];
         }
 
         public SearchyFilter(string field, SearchyRule rule, object value)
