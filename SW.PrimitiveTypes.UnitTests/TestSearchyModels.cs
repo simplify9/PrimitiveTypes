@@ -20,7 +20,9 @@ namespace SW.PrimitiveTypes.UnitTests
                 ValueDateTimeArray = new DateTime[] { DateTime.Now, DateTime.UtcNow }
             };
 
-            var filterDeserialized = new SearchyFilter(Uri.UnescapeDataString(filter.ToString())); 
+            var searchRequest = new SearchyRequest(filter.ToString());
+
+            //var filterDeserialized = new SearchyFilter(Uri.UnescapeDataString(filter.ToString())); 
 
             var filter2 = new SearchyFilter
             {
