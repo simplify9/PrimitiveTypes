@@ -18,6 +18,7 @@ namespace SW.PrimitiveTypes
         {
             Conditions = new List<SearchyCondition>();
             Sorts = new List<SearchySort>();
+            CountRows = true;
         }
 
         public SearchyRequest(string queryString) : this()
@@ -36,18 +37,18 @@ namespace SW.PrimitiveTypes
                 foreach (var str in sorts)
                     Sorts.Add(new SearchySort(str));
 
-            if (queryDictionary.TryGetValue(PageSizeName, out var sizes) && 
-                sizes.Any() && 
+            if (queryDictionary.TryGetValue(PageSizeName, out var sizes) &&
+                sizes.Any() &&
                 int.TryParse(sizes.First(), out var pageSize))
                 PageSize = pageSize;
 
-            if (queryDictionary.TryGetValue(PageIndexName, out var pages) && 
-                pages.Any() && 
+            if (queryDictionary.TryGetValue(PageIndexName, out var pages) &&
+                pages.Any() &&
                 int.TryParse(pages.First(), out var pageIndex))
                 PageIndex = pageIndex;
 
             if (queryDictionary.TryGetValue(CountRowsName, out var counts) &&
-                counts.Any() && 
+                counts.Any() &&
                 bool.TryParse(counts.First(), out var countRows))
                 CountRows = countRows;
 
@@ -87,8 +88,7 @@ namespace SW.PrimitiveTypes
             Conditions.Add(condition);
         }
 
-        public SearchyRequest(string field, SearchyRule rule, object value) :
-            this(new SearchyCondition(field, rule, value))
+        public SearchyRequest(string field, SearchyRule rule, object value) : this(new SearchyCondition(field, rule, value))
         {
         }
 
