@@ -6,6 +6,14 @@ namespace SW.PrimitiveTypes
 {
     public class SearchyRequest : ICloneable, IEquatable<SearchyRequest>
     {
+        private const string FilterName = "filter";
+        private const string SortName = "sort";
+        private const string PageSizeName = "size";
+        private const string PageIndexName = "page";
+        private const string CountRowsName = "count";
+        private const string SearchPhraseName = "search";
+        private const string FormatName = "format";
+
         public SearchyRequest()
         {
             Conditions = new List<SearchyCondition>();
@@ -16,7 +24,7 @@ namespace SW.PrimitiveTypes
         {
             var queryDictionary = QueryStringParser.Parse(queryString);
 
-            if (queryDictionary.TryGetValue("filter", out var filters))
+            if (queryDictionary.TryGetValue(FilterName, out var filters))
             {
                 var cond = new SearchyCondition();
                 Conditions.Add(cond);
@@ -24,24 +32,35 @@ namespace SW.PrimitiveTypes
                     cond.Filters.Add(new SearchyFilter(str));
             }
 
-            if (queryDictionary.TryGetValue("sort", out var sorts))
+            if (queryDictionary.TryGetValue(SortName, out var sorts))
                 foreach (var str in sorts)
                     Sorts.Add(new SearchySort(str));
 
-            if (queryDictionary.TryGetValue("size", out var sizes) && 
+            if (queryDictionary.TryGetValue(PageSizeName, out var sizes) && 
                 sizes.Any() && 
                 int.TryParse(sizes.First(), out var pageSize))
                 PageSize = pageSize;
 
-            if (queryDictionary.TryGetValue("page", out var pages) && 
+            if (queryDictionary.TryGetValue(PageIndexName, out var pages) && 
                 pages.Any() && 
                 int.TryParse(pages.First(), out var pageIndex))
                 PageIndex = pageIndex;
 
-            if (queryDictionary.TryGetValue("count", out var counts) &&
+            if (queryDictionary.TryGetValue(CountRowsName, out var counts) &&
                 counts.Any() && 
                 bool.TryParse(counts.First(), out var countRows))
                 CountRows = countRows;
+
+            if (queryDictionary.TryGetValue(SearchPhraseName, out var searches) &&
+                searches.Any())
+                SearchPhrase = searches.First();
+
+
+            if (queryDictionary.TryGetValue(FormatName, out var formats) &&
+                formats.Any() &&
+                byte.TryParse(formats.First(), out var format))
+                Format = format;
+
         }
 
         public SearchyRequest(string[] filters, string[] sorts = null, int pageSize = 0, int pageIndex = 0, bool countRows = false) : this()
@@ -78,6 +97,8 @@ namespace SW.PrimitiveTypes
         public int PageSize { get; set; }
         public int PageIndex { get; set; }
         public bool CountRows { get; set; }
+        public string SearchPhrase { get; set; }
+        public byte Format { get; set; }
 
         public override string ToString()
         {
@@ -96,9 +117,11 @@ namespace SW.PrimitiveTypes
             var result = string.Empty;
             if (!string.IsNullOrEmpty(filtersStr)) result = $"{filtersStr}&";
             if (!string.IsNullOrEmpty(sortsStr)) result = $"{result}{sortsStr}&";
-            if (PageSize > 0) result = $"{result}size={PageSize}&";
-            if (PageIndex > 0) result = $"{result}page={PageIndex}&";
-            if (CountRows) result = $"{result}count={CountRows}&";
+            if (PageSize > 0) result = $"{result}{PageSizeName}={PageSize}&";
+            if (PageIndex > 0) result = $"{result}{PageIndexName}={PageIndex}&";
+            if (CountRows) result = $"{result}{CountRowsName}={CountRows}&";
+            if (Format > 0) result = $"{result}{FormatName}={Format}&";
+            if (SearchPhrase != null) result = $"{result}{SearchPhraseName}={Uri.EscapeDataString(SearchPhrase)}&";
 
             if (!string.IsNullOrEmpty(result)) result = result.Remove(result.Length - 1);
 
