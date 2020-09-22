@@ -60,7 +60,7 @@ namespace SW.PrimitiveTypes.UnitTests
             sr4.CountRows = true; 
             var srStr4 = sr4.ToString();
 
-            var srnew = new SearchyRequest(new string[] { "Id:1:testvalue" }, null, 0, 0, false);
+            var srnew = new SearchyRequest("filter=Id:1:testvalue");
 
 
             var sres = new SearchyResponse<string>();
