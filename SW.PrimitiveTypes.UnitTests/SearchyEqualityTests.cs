@@ -36,42 +36,22 @@ namespace SW.PrimitiveTypes.UnitTests
         [TestMethod]
         public void TestSearchyRequestEquality3()
         {
-            var sr1 = new SearchyRequest
+            var sr1 = new SearchyRequest();
+            sr1.Conditions.Add(
+            new SearchyCondition(new SearchyFilter
             {
-                Conditions = new List<SearchyCondition>
-                {
-                    new SearchyCondition
-                    {
-                        Filters = new List<SearchyFilter>
-                        {
-                            new SearchyFilter
-                            {
-                                Field = "Id",
-                                Rule = SearchyRule.EqualsTo ,
-                                ValueDecimal = 5
-                            }
-                        }
-                    }
-                }
-            };
-            var sr2 = new SearchyRequest
+                Field = "Id",
+                Rule = SearchyRule.EqualsTo,
+                ValueDecimal = 5
+            }));
+
+            var sr2 = new SearchyRequest();
+            sr2.Conditions.Add(new SearchyCondition(new SearchyFilter
             {
-                Conditions = new List<SearchyCondition>
-                {
-                    new SearchyCondition
-                    {
-                        Filters = new List<SearchyFilter>
-                        {
-                            new SearchyFilter
-                            {
-                                Field = "Id",
-                                Rule = SearchyRule.EqualsTo ,
-                                ValueDecimal = 5
-                            }
-                        }
-                    }
-                }
-            };
+                Field = "Id",
+                Rule = SearchyRule.EqualsTo,
+                ValueDecimal = 5
+            }));
 
             var result = sr1 == sr2;
             Assert.IsTrue(result);

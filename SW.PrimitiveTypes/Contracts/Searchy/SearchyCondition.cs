@@ -6,7 +6,7 @@ namespace SW.PrimitiveTypes
 {
     public class SearchyCondition : ICloneable, IEquatable<SearchyCondition>
     {
-        public ICollection<SearchyFilter> Filters { get; set; }
+        public ICollection<SearchyFilter> Filters { get; private set; }
 
         public SearchyCondition() => Filters = new List<SearchyFilter>();
 

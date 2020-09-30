@@ -92,8 +92,8 @@ namespace SW.PrimitiveTypes
         {
         }
 
-        public ICollection<SearchyCondition> Conditions { get; set; }
-        public ICollection<SearchySort> Sorts { get; set; }
+        public ICollection<SearchyCondition> Conditions { get; private set; }
+        public ICollection<SearchySort> Sorts { get; private set; }
         public int PageSize { get; set; }
         public int PageIndex { get; set; }
         public bool CountRows { get; set; }
