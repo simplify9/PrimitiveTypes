@@ -12,6 +12,10 @@ namespace SW.PrimitiveTypes
             return Nullable.GetUnderlyingType(type);
         }
 
+        public static T ConvertValueToType<T>(this object value)
+        {
+            return (T)value.ConvertValueToType(typeof(T));
+        }
 
         public static object ConvertValueToType(this object value, Type type)
         {
