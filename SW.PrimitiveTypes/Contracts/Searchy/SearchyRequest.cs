@@ -116,7 +116,7 @@ namespace SW.PrimitiveTypes
 
             var result = $"{CountRowsName}={CountRows}&";
 
-            if (!string.IsNullOrEmpty(filtersStr)) result = $"{filtersStr}&";
+            if (!string.IsNullOrEmpty(filtersStr)) result = $"{result}{filtersStr}&";
             if (!string.IsNullOrEmpty(sortsStr)) result = $"{result}{sortsStr}&";
             if (PageSize > 0) result = $"{result}{PageSizeName}={PageSize}&";
             if (PageIndex > 0) result = $"{result}{PageIndexName}={PageIndex}&";
