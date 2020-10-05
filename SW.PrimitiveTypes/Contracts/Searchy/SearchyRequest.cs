@@ -114,18 +114,16 @@ namespace SW.PrimitiveTypes
             var sorts = Sorts.Select(s => s.ToString());
             sortsStr = string.Join("&", sorts);
 
-            var result = string.Empty;
+            var result = $"{CountRowsName}={CountRows}&";
+
             if (!string.IsNullOrEmpty(filtersStr)) result = $"{filtersStr}&";
             if (!string.IsNullOrEmpty(sortsStr)) result = $"{result}{sortsStr}&";
             if (PageSize > 0) result = $"{result}{PageSizeName}={PageSize}&";
             if (PageIndex > 0) result = $"{result}{PageIndexName}={PageIndex}&";
-            if (CountRows) result = $"{result}{CountRowsName}={CountRows}&";
             if (Format > 0) result = $"{result}{FormatName}={Format}&";
             if (SearchPhrase != null) result = $"{result}{SearchPhraseName}={Uri.EscapeDataString(SearchPhrase)}&";
 
-            if (!string.IsNullOrEmpty(result)) result = result.Remove(result.Length - 1);
-
-            return result;
+            return result.Remove(result.Length - 1);
         }
 
         public object Clone()
