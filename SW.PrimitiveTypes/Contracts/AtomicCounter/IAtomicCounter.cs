@@ -7,7 +7,7 @@ namespace SW.PrimitiveTypes
 {
     public interface IAtomicCounter
     {
-        Task<long> IncrementAsync(string counterName);
+        Task<long> IncrementAsync(string counterName, long increment = 1);
 
         Task ResetAsync(string counterName);
 
