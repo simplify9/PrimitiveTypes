@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SW.PrimitiveTypes
 {
-    static class StringExtensions
+    public static class StringExtensions
     {
 
         public static string NullIfEmpty(this string input)
