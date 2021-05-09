@@ -4,8 +4,45 @@ using System.Text;
 
 namespace SW.PrimitiveTypes
 {
-    public class Dimensions
+    public class Dimensions : IEquatable<Dimensions>
     {
+        public bool Equals(Dimensions other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return Length == other.Length && Width == other.Width && Height == other.Height && Unit == other.Unit;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((Dimensions) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = Length.GetHashCode();
+                hashCode = (hashCode * 397) ^ Width.GetHashCode();
+                hashCode = (hashCode * 397) ^ Height.GetHashCode();
+                hashCode = (hashCode * 397) ^ Unit.GetHashCode();
+                return hashCode;
+            }
+        }
+
+        public static bool operator ==(Dimensions left, Dimensions right)
+        {
+            return Equals(left, right);
+        }
+
+        public static bool operator !=(Dimensions left, Dimensions right)
+        {
+            return !Equals(left, right);
+        }
+
         public static Dimensions Empty()
         {
             return new Dimensions { };
