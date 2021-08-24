@@ -66,7 +66,7 @@ namespace SW.PrimitiveTypes
 
         public DimensionUnit? Unit { get; set; }
 
-        public decimal? Volume => Length == null ? (decimal?)null : Length.Value * Width.Value * Height.Value;
+        public decimal? Volume => !Length.HasValue || !Width.HasValue || !Height.HasValue ? (decimal?)null : Length.Value * Width.Value * Height.Value;
 
 
         public Weight GetVolumetricWeight(decimal? calculationFactor = null)
