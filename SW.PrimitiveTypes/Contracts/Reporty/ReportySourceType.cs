@@ -9,6 +9,7 @@ namespace SW.PrimitiveTypes
         MsSql = 1,
         MySql = 2,
         SQLite = 3,
-        Json = 4
+        Json = 4,
+        PgSql = 5
     }
 }
