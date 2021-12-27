@@ -6,7 +6,7 @@ namespace SW.PrimitiveTypes
     {
 
         public const string ConfigurationSection = "CloudFiles";
-
+        public string Driver { get; set; } = "S3";
         public string AccessKeyId { get; set; }
         public string SecretAccessKey { get; set; }
         public string BucketName { get; set; }
