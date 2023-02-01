@@ -9,5 +9,6 @@ namespace SW.PrimitiveTypes
         public bool Optional { get; set; }
         public string Default { get; set; }
         public string Type { get; set; }
+        public bool Private { get; set; }
     }
 }
