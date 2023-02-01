@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net6</TargetFramework>
     <PackageId>SimplyWorks.PrimitiveTypes</PackageId>
     <Authors>Simplify9</Authors>
     <Product>SimplyWorks.PrimitiveTypes</Product>
