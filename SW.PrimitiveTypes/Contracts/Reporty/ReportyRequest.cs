@@ -17,5 +17,6 @@ namespace SW.PrimitiveTypes
         public ReportySource DataSource { get; set; }
         public ReportyFormat ExportFormat { get; set; }
         public IDictionary<string, string> Parameters { get; set; }
+        public string ReportExportPath { get; set; }
     }
 }
