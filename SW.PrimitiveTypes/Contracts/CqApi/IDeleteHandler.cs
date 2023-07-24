@@ -6,5 +6,10 @@ namespace SW.PrimitiveTypes
     {
         Task<object> Handle(TKey key);
     }
+    
+    public interface IDeleteHandler<in TKey, TResult> : IHandler
+    {
+        Task<TResult> Handle(TKey key);
+    }
 
 }

@@ -2,19 +2,22 @@
 
 namespace SW.PrimitiveTypes
 {
-    public interface IQueryHandler<in TKey, in TRequest> : IHandler where TRequest : class
+
+    public interface IQueryHandler<in TKey, in TRequest, TResult> : IHandler where TRequest : class
     {
-        Task<object> Handle(TKey key, TRequest request);
+        Task<TResult> Handle(TKey key, TRequest request);
     }
 
-    public interface IQueryHandler<in TRequest> : IHandler where TRequest : class
+    public interface IQueryHandler<in TRequest, TResult> : IHandler where TRequest : class
     {
-        Task<object> Handle(TRequest request);
+        Task<TResult> Handle(TRequest request);
     }
 
-    public interface IQueryHandler : IHandler
+    public interface IQueryHandler<TResult> : IHandler
     {
-        Task<object> Handle();
+        Task<TResult> Handle();
     }
+    
+    
 
 }

@@ -2,18 +2,18 @@
 
 namespace SW.PrimitiveTypes
 {
-    public interface ICommandHandler : IHandler
+    public interface ICommandHandler<TResult> : IHandler
     {
-        Task<object> Handle();
+        Task<TResult> Handle();
     }
 
-    public interface ICommandHandler<in TKey, in TRequest> : IHandler where TRequest : class
+    public interface ICommandHandler<in TKey, in TRequest, TResult> : IHandler where TRequest : class
     {
-        Task<object> Handle(TKey key, TRequest request);
+        Task<TResult> Handle(TKey key, TRequest request);
     }
-    public interface ICommandHandler<in TRequest> : IHandler where TRequest : class
+    public interface ICommandHandler<in TRequest, TResult> : IHandler where TRequest : class
     {
-        Task<object> Handle(TRequest request);
+        Task<TResult> Handle(TRequest request);
     }
 
 }

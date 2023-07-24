@@ -8,7 +8,7 @@ pool:
 
 variables:
   major: 6
-  minor: 0
+  minor: 1
   version: $[format('{0}.{1}.{2}', variables['major'], variables['minor'], counter(format('{0}.{1}', variables['major'], variables['minor']), 0))]
   buildConfiguration: 'Release'
 
