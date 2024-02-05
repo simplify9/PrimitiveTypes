@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace SW.PrimitiveTypes
 {
@@ -35,11 +36,17 @@ namespace SW.PrimitiveTypes
                 if (string.IsNullOrWhiteSpace(value.ToString())) return null;
 
                 if (nakedType.IsEnum) return Enum.Parse(nakedType, value.ToString(), true);
+                if (nakedType == typeof(DateTime) && value is string nv && nv.Last() == 'Z')
+                    return DateTime.Parse(nv).ToUniversalTime();
                 return Convert.ChangeType(value, nakedType);
             }
 
             if (type.IsEnum) return Enum.Parse(type, value.ToString(), true);
+            if (type == typeof(DateTime) && value is string v && v.Last() == 'Z')
+                return DateTime.Parse(v).ToUniversalTime();
+            
             return Convert.ChangeType(value, type);
+            
         }
     }
 }
