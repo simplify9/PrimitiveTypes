@@ -11,5 +11,6 @@ namespace SW.PrimitiveTypes
         public string SecretAccessKey { get; set; }
         public string BucketName { get; set; }
         public string ServiceUrl { get; set; }
+        public string Driver { get; set; } = "S3";
     }
 }
